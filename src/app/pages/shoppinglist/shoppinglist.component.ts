@@ -28,6 +28,7 @@ export class ShoppinglistComponent implements OnInit {
       //     ID: its id
       //     Name: its name
       //     IsChecked: false
+      //hi
   }
 
 

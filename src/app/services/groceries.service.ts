@@ -71,14 +71,24 @@ export class GroceriesService {
   }
   public async saveShoppingList(missing){
     console.log(missing)
+    let ingredients=await this.getList();
     let user = JSON.parse(await ApplicationSettings.getString('user'));
     console.log("hi4")
-    
+    let missingList=[];
+    ingredients.forEach(item=>{
+      let ing=item.data()
+      ing.isChecked=false;
+      for (let i = 0; i<missing.length; i++){
+        if (ing.Name == missing[i])
+          missingList.push(ing);
+      }
+
+    })
     if (user.ShoppingList){
-      user.ShoppingList = user.ShoppingList.concat(missing)
+      user.ShoppingList = user.ShoppingList.concat(missingList)
     }
     else {
-      user.ShoppingList = missing
+      user.ShoppingList = missingList
     }
     let TempList = Array.from(new Set(user.ShoppingList));
     user.ShoppingList = TempList

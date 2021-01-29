@@ -9,6 +9,7 @@ import { ListViewEventData, RadListView } from "nativescript-ui-listview";
 import { Users } from 'src/app/services/users.service';
 import { ApplicationSettings } from '@nativescript/core';
 import { DatePicker } from "@nativescript/core";
+import { Dialogs } from "@nativescript/core"
 
 
 
@@ -93,6 +94,7 @@ export class GroceriesComponent implements OnInit {
 
     let item = this.Ingredients[args.index]
     item.isChecked = false;
+    item.exDate="";
     this.SelectedIngredients.push(item)
     this.groceries.saveSelectedIngredients(item, this.ind)
     this.searchBar.text = '';
@@ -136,6 +138,36 @@ export class GroceriesComponent implements OnInit {
     }
 
     await this.groceries.deleteSelectedIngredients(item);
+  }
+
+  async editDate(item){
+
+    let d = await Dialogs.prompt({
+      title:"Enter date (YYYY-MM-DD)",
+      okButtonText:"Save",
+      cancelButtonText:"Cancel",
+    })
+    let ind;
+    
+    if(d.text =='')
+    return; 
+
+    for (let i = 0; i < this.SelectedIngredients.length; i++) {
+      if (this.SelectedIngredients[i].ID === item.ID)
+       {
+        let dd = new Date(d.text).getTime()
+        console.log("dd => ",dd)
+        console.log('new Date(d.text) --> ',new Date(d.text))
+        let start=Date.now()
+        item.timeLeft = Math.ceil((Math.abs(start-dd)) / (1000*60*60*24 )) + " Days"
+        item.exDate = d.text;
+        ind = i;
+        break;
+
+      }
+    }
+
+    this.groceries.saveSelectedIngredients(item, ind)
   }
 
   //deleteItem(args: ItemEventData) {
