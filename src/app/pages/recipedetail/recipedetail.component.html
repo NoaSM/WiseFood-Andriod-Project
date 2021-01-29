@@ -1,0 +1,22 @@
+<ActionBar title="Recipes Details"></ActionBar>
+<FlexboxLayout class="backround">  
+    <Label [text]="item.Name"></Label>
+    <Label text=""></Label>
+    <Label text="The ingredients required for this recipe:"></Label> 
+    <label *ngFor="let ing of item.IngredientsArray" [text]="ing"></label>
+    <Label text=""></Label>
+    <Label text="The ingredients you already own for this recipe:"></Label> 
+    <label *ngFor="let e of existsBoth" [text]="e"></label>
+    <Label text=""></Label>
+    <Label text="The ingredients you miss for this recipe:"></Label>
+    <label *ngFor="let miss of missing" [text]="miss"></label>
+    <Button text="Add missing ingredients to shopping list" (tap)="addToShoppinglist()"></Button>
+    <Label text=""></Label>
+    <Label text="Preparation time:"></Label>
+    <Label [text]="item.Preparation"></Label>
+    <Label text=""></Label>
+    <Label text="The instructions:"></Label> 
+    <label textWrap="true" [text]="item.Instructions"></label>
+    
+</FlexboxLayout>
+

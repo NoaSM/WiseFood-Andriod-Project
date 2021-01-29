@@ -1,0 +1,24 @@
+FlexboxLayout {
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-image: url("https://www.mccain.com/media/2557/mccain-fries-and-appetizers.jpg")
+    
+  }
+  .form {
+    width: 300;
+    padding: 10 16;
+    background-color: #fffdfd;
+  }
+  .logo{
+    font-family:monospace;
+    font-size:40%;
+    height:100;
+    font-weight: bold;
+  
+  }
+  .btn2{
+    background-color: darkred;
+    font-weight: bold;
+    color:white;
+  }

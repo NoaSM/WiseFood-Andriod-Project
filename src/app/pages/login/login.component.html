@@ -1,0 +1,19 @@
+<ActionBar title="Wise Food"></ActionBar>
+<FlexboxLayout flexDirection="column">
+	<StackLayout class="logo">
+		<Label text="WiseFood"></Label>
+	</StackLayout>
+	<StackLayout class="form" >
+		
+
+        <TextField hint="Email Address" keyboardType="email"
+        [(ngModel)]="user.Email" autocorrect="false" autocapitalizationType="none" 
+		 class="input input-border"></TextField>
+		<TextField hint="Password" secure="true" [(ngModel)]="user.Password" class="input input-border"></TextField>
+		<Button class="btn1" text="LOGIN" (tap)="Login()"></Button>
+		<Label [nsRouterLink]="['/register']" text="Not a member? Register here." class="text-center footnote"></Label>
+	</StackLayout>
+			
+
+	
+</FlexboxLayout>

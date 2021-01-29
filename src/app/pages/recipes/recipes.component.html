@@ -1,0 +1,17 @@
+<ActionBar title="Recipes"></ActionBar>
+<FlexboxLayout class="backround">  
+    <Label *ngFor="let item of recipeList" [text]="item.Name" (tap)="something(item)"[nsRouterLink]="['/recipedetail']"></Label> 
+</FlexboxLayout>
+
+    
+   
+    
+    <!-- <ScrollView>
+        <StackLayout>
+            <StackLayout *ngFor="let item of recipeList">
+                <Label [text]="item.Name" style="color:rgb(0, 0, 0); font-size: large;"></Label>
+            </StackLayout> 
+        </StackLayout>
+    </ScrollView> -->
+
+

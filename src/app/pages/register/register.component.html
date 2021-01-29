@@ -1,0 +1,19 @@
+<ActionBar title="Wise Food"></ActionBar>
+<FlexboxLayout flexDirection="column">
+
+	<StackLayout class="logo">
+		<Label text="WiseFood"></Label>
+	</StackLayout>
+	
+	<StackLayout class="form" >
+		
+		<TextField hint="Username" [(ngModel)]="user.Username"></TextField>
+		<TextField hint="Email Address" keyboardType="email" autocorrect="false" autocapitalizationType="none" 
+		 class="input input-border" [(ngModel)]="user.Email"></TextField>
+		<TextField hint="Password" secure="true"  class="input input-border" [(ngModel)]="user.Password"></TextField>
+		<Button class="btn2" text="SIGN UP" (tap)="userAdding()"></Button>
+		<Label [nsRouterLink]="['/login']" text="Go back to login" class="text-center footnote" ></Label>
+		
+		
+	</StackLayout>
+</FlexboxLayout>
