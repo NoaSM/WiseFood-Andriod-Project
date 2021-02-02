@@ -23,10 +23,17 @@ export class GroceriesService {
     if (ind > -1) { // רק אם האינדקס של האייטם נמצא ברשימהה, כלומר הוא גדול ממינוס 1, תבצע את כל מה שלמטה
       // console.log('item -=> ',item)
       // console.log('u =>', user);
+      // console.log("******************")
+      // console.log(item)
+
+      // console.log(user.SelectedIngredients[ind])
       if (user.SelectedIngredients) {//אם זה קיים בפיירבייס
         user.SelectedIngredients.splice(ind, 1)//תמחק את המוצר מרשימה בפיירבייס\
         
         user.SelectedIngredients.splice(ind, 0, item)//תכניס את המוצר לרשימה בפיירבייס\
+        // console.log("##################")
+
+        // console.log(user.SelectedIngredients)
         // ספלייס - ראשון הוא איפה לבצע את הפעולה
         // שני הוא כמה מהאיברים למחוק, אם זה אפס אז אפס איברים למחוק
         // שלישי הוא מה להכניס
@@ -49,9 +56,11 @@ export class GroceriesService {
       }
       // console.log(user)
     }
+
+    // console.log("1")
     await firestore.collection('Users').doc(user.ID).set(user)//מעדכן את הפיירבייס
     await ApplicationSettings.setString('user', JSON.stringify(user))//מעדכן את ה-אפ סטינגז
-
+    // console.log("2")
   }
 
 
@@ -70,10 +79,10 @@ export class GroceriesService {
 
   }
   public async saveShoppingList(missing){
-    console.log(missing)
+    //console.log(missing)
     let ingredients=await this.getList();
     let user = JSON.parse(await ApplicationSettings.getString('user'));
-    console.log("hi4")
+    //console.log("hi4")
     let missingList=[];
     ingredients.forEach(item=>{
       let ing=item.data()
@@ -92,9 +101,9 @@ export class GroceriesService {
     }
     let TempList = Array.from(new Set(user.ShoppingList));
     user.ShoppingList = TempList
-    console.log("hi5")
+    //console.log("hi5")
     await ApplicationSettings.setString('user', JSON.stringify(user))//מעדכן ת-אפ סטינגס בסרביס
-    console.log("hi6")
+    //console.log("hi6")
     await firestore.collection('Users').doc(user.ID).set(user)//מעדכן את הפיירבייס
   }
 

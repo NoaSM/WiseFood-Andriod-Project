@@ -43,12 +43,16 @@ export class GroceriesComponent implements OnInit {
 
 
   ngOnInit(): void {
+    
     this.loadIngredients();
     //this.selectedItems = "No Selected items.";
     this.user = JSON.parse(ApplicationSettings.getString('user'));
     if (this.user.SelectedIngredients) {
       this.SelectedIngredients = this.user.SelectedIngredients
+      this.refreshDate();
+
     }
+    
 
   }
 
@@ -148,7 +152,7 @@ export class GroceriesComponent implements OnInit {
       cancelButtonText:"Cancel",
     })
     let ind;
-    
+
     if(d.text =='')
     return; 
 
@@ -170,6 +174,33 @@ export class GroceriesComponent implements OnInit {
     this.groceries.saveSelectedIngredients(item, ind)
   }
 
+  async refreshDate(){
+    if (this.SelectedIngredients === []){
+      return;
+    }
+    let ind;
+    // let len = this.SelectedIngredients.length
+    for (let i = 0; i < this.SelectedIngredients.length; i++) {
+      let item = Object.assign({}, this.SelectedIngredients[i])
+      // console.log(this.SelectedIngredients[i])
+      // console.log(item)
+      if (item.exDate != "") // צריך לערוך את זה לפי מה שמוגדר הערך הראשון של התאריך
+       {
+        let dd = new Date(item.exDate).getTime()
+        // console.log(dd)
+        let start=Date.now()
+        // console.log(start)
+        // console.log(((Math.abs(start-dd))))
+        item.timeLeft = Math.ceil((Math.abs(start-dd)) / (1000*60*60*24 )) + " Days"
+        ind = i;
+        // console.log(ind)
+        await this.groceries.saveSelectedIngredients(item, ind)
+        // console.log(item)
+      }
+
+    }
+
+  }
   //deleteItem(args: ItemEventData) {
 
 

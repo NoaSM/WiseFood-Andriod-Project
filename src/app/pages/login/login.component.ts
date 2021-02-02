@@ -11,6 +11,7 @@ import { Users } from '../../services/users.service'
 export class LoginComponent implements OnInit {
 
   public user = new Users();
+  
 
   constructor(private usersService: UsersService) { }
 
@@ -25,4 +26,7 @@ export class LoginComponent implements OnInit {
     // 
   }
 
+
 }
+
+  
