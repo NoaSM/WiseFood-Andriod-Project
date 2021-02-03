@@ -157,6 +157,41 @@ export class GroceriesService {
 
   }
 
+  public async DelAndUp(item, ind){
+    let user = JSON.parse(await ApplicationSettings.getString('user'));
+    user.ShoppingList.splice(ind, 1)
+    let ind_2 = user.SelectedIngredients.indexOf(item, 0)
+    item.isChecked = false
+    item.exDate = ""
+    if (ind_2 <= -1){
+      user.SelectedIngredients.push(item)
+    }
+
+    await firestore.collection('Users').doc(user.ID).set(user)//מעדכן את הפיירבייס
+    await ApplicationSettings.setString('user', JSON.stringify(user))//מעדכן את ה-אפ סטינגז
+  }
+
+  // public async updatePantry(item) {
+  //   let user = JSON.parse(await ApplicationSettings.getString('user'));
+
+  //   for (let i = 0; i < user.SelectedIngredients.length; i++) {
+  //     if (user.SelectedIngredients[i].ID === item.ID) {
+  //       console.log('if entered')
+  //       return;
+  //     }
+  //   }
+  //   console.log('else entered')
+  //   // item.isChecked = false
+  //   user.SelectedIngredients.push(item)
+  //   // user.SelectedIngredients[user.SelectedIngredients.length - 1].isChecked =false
+      
+    
+  //   console.log('awaits')
+  //   await ApplicationSettings.setString('user', JSON.stringify(user))//מעדכן ת-אפ סטינגס בסרביס
+  //   await firestore.collection('Users').doc(user.ID).set(user)//מעדכן את הפיירבייס
+  // }
+
+  
   //public async whenToggleCheck(item){
   //console.log('item -=> ',item)
 

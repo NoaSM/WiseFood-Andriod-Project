@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵɵNgOnChangesFeature, AfterViewInit, OnChanges } from '@angular/core';
 import { GroceriesService } from '../../services/groceries.service'
 import { RecipesService } from '../../services/recipes.service'
 //import { RecipesService } from '../../services/recipes.service'
@@ -10,6 +10,8 @@ import { Users } from 'src/app/services/users.service';
 import { ApplicationSettings } from '@nativescript/core';
 import { DatePicker } from "@nativescript/core";
 import { Dialogs } from "@nativescript/core"
+import { Router,NavigationEnd } from '@angular/router';
+
 
 
 
@@ -34,7 +36,22 @@ export class GroceriesComponent implements OnInit {
   public isCheckedArray = [];
   public minDate: Date = new Date(1975, 0, 29);
   public maxDate: Date = new Date(2045, 4, 12);
-  constructor(private groceries: GroceriesService) { }
+  constructor(private groceries: GroceriesService,
+    private router: Router
+ ) {
+    this.router.events.subscribe((e) => {
+        if (e instanceof NavigationEnd) {
+            // Function you want to call here
+            this.user = JSON.parse(ApplicationSettings.getString('user'));
+            this.SelectedIngredients = this.user.SelectedIngredients
+              console.log('const')
+        
+            this.refreshDate();
+        }
+     });
+ }
+  
+  
 
   // get SelectedItems(): string {
   //return this.selectedItems;
@@ -43,18 +60,21 @@ export class GroceriesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    
+    console.log('run')
     this.loadIngredients();
     //this.selectedItems = "No Selected items.";
     this.user = JSON.parse(ApplicationSettings.getString('user'));
     if (this.user.SelectedIngredients) {
       this.SelectedIngredients = this.user.SelectedIngredients
+      // console.log(this.SelectedIngredients)
+
       this.refreshDate();
+     
 
     }
-    
-
+  
   }
+
 
   private async loadIngredients() {
     this.DataCollection = await this.groceries.getList(); //טוען את הרשימה ממסד הנתונים שיושב ב service
@@ -172,9 +192,13 @@ export class GroceriesComponent implements OnInit {
     }
 
     this.groceries.saveSelectedIngredients(item, ind)
+    this.refreshDate();
   }
 
+
+
   async refreshDate(){
+    console.log('refDate')
     if (this.SelectedIngredients === []){
       return;
     }
