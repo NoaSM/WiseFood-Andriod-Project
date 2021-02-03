@@ -99,12 +99,62 @@ export class GroceriesService {
     else {
       user.ShoppingList = missingList
     }
-    let TempList = Array.from(new Set(user.ShoppingList));
-    user.ShoppingList = TempList
+    console.log(user.ShoppingList.length)
+    // let TempList = Array.from(new Set(user.ShoppingList)); 
+    // user.ShoppingList = TempList
+    var resArr = [];
+    user.ShoppingList.forEach(function(item){
+    var i = resArr.findIndex(x => x.Name == item.Name);
+     if(i <= -1){
+      resArr.push({ID: item.ID, Name: item.Name, isChecked: item.isChecked});
+      }
+     });
+    user.ShoppingList = resArr
+
+    console.log(user.ShoppingList.length)
     //console.log("hi5")
     await ApplicationSettings.setString('user', JSON.stringify(user))//מעדכן ת-אפ סטינגס בסרביס
     //console.log("hi6")
     await firestore.collection('Users').doc(user.ID).set(user)//מעדכן את הפיירבייס
+  }
+
+
+  public async updateShoppingList(item, ind){
+    let user = JSON.parse(await ApplicationSettings.getString('user'));
+    if (user.ShoppingList) {//אם זה קיים בפיירבייס
+      user.ShoppingList.splice(ind, 1)//תמחק את המוצר מרשימה בפיירבייס\
+      
+      user.ShoppingList.splice(ind, 0, item)//תכניס את המוצר לרשימה בפיירבייס\
+      // console.log("##################")
+
+      // console.log(user.SelectedIngredients)
+      // ספלייס - ראשון הוא איפה לבצע את הפעולה
+      // שני הוא כמה מהאיברים למחוק, אם זה אפס אז אפס איברים למחוק
+      // שלישי הוא מה להכניס
+
+    }
+    else {
+      user.ShoppingList = [item]//תיצור רשימה בפיירבייס אם הפרמטר לא קיים
+    }
+    //console.log("hi5")
+    await ApplicationSettings.setString('user', JSON.stringify(user))//מעדכן ת-אפ סטינגס בסרביס
+    //console.log("hi6")
+    await firestore.collection('Users').doc(user.ID).set(user)//מעדכן את הפיירבייס
+  }
+
+  public async deleteShoppingList(item) {
+    let user = JSON.parse(await ApplicationSettings.getString('user'));
+
+    for (let i = 0; i < user.ShoppingList.length; i++) {
+      if (user.ShoppingList[i].ID === item.ID) {
+        
+        user.ShoppingList.splice(i, 1);
+        break;
+      }
+    }
+    await ApplicationSettings.setString('user', JSON.stringify(user))//מעדכן ת-אפ סטינגס בסרביס
+    await firestore.collection('Users').doc(user.ID).set(user)//מעדכן את הפיירבייס
+
   }
 
   //public async whenToggleCheck(item){
