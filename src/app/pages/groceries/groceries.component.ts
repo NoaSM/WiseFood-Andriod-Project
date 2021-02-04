@@ -7,7 +7,7 @@ import { ItemEventData } from "@nativescript/core/ui/list-view";
 import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
 import { ListViewEventData, RadListView } from "nativescript-ui-listview";
 import { Users } from 'src/app/services/users.service';
-import { ApplicationSettings } from '@nativescript/core';
+import { ApplicationSettings, ObservableArray } from '@nativescript/core';
 import { DatePicker } from "@nativescript/core";
 import { Dialogs } from "@nativescript/core"
 import { Router,NavigationEnd } from '@angular/router';
@@ -60,6 +60,11 @@ export class GroceriesComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.pageLoad();
+
+
+  }
+  private pageLoad(){
     console.log('run')
     this.loadIngredients();
     //this.selectedItems = "No Selected items.";
@@ -72,7 +77,6 @@ export class GroceriesComponent implements OnInit {
      
 
     }
-  
   }
 
 
@@ -186,13 +190,22 @@ export class GroceriesComponent implements OnInit {
         item.timeLeft = Math.ceil((Math.abs(start-dd)) / (1000*60*60*24 )) + " Days"
         item.exDate = d.text;
         ind = i;
+        console.log("1", this.SelectedIngredients[i])
+        console.log("2",item)
+        this.SelectedIngredients[i] = item;
+        console.log("3",this.SelectedIngredients[i])
+        
         break;
 
       }
-    }
 
+    }
+    
+    
     this.groceries.saveSelectedIngredients(item, ind)
     this.refreshDate();
+    
+    
   }
 
 
@@ -224,6 +237,16 @@ export class GroceriesComponent implements OnInit {
 
     }
 
+  }
+
+  showDate(item){
+    Dialogs.alert({
+      title: item.Name,
+      message: item.exDate + " " + item.timeLeft + " Days",
+      okButtonText: "Ok"
+    })
+
+    
   }
   //deleteItem(args: ItemEventData) {
 
