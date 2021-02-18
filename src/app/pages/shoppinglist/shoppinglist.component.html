@@ -5,13 +5,14 @@
         <ng-template let-item="item" let-i="index">
             <GridLayout columns="*,auto">
                 
-                <StackLayout col="0,*"  orientation="horizontal"> 
-                    <Label *ngIf="item.isChecked"  text="V" style="color:green"  col="0"></Label>
+                <StackLayout class="list-group-item" col="0,*"  orientation="horizontal"> 
+                    <Label *ngIf="item.isChecked"  text="✔" style="font-size:50%"  style="border-width: 1;"  col="0"></Label>
                     <Label [text]="item.Name" class="list-group-item" style="color:#fff;"  col="1"></Label>
-                    <Label text="Move to Pantry" (tap)="fromShoppingListToPantry(item)" style="color:rgb(168, 28, 196)" col="2"></Label>
+                    
                 </StackLayout>   
-                <StackLayout col="1">
-                    <Label text="X" (tap)="removeShopList(item)" style="color:red"></Label>
+                <StackLayout col="1" orientation="vertical">
+                    <Label class="list-group-item2" text="Move to Pantry" (tap)="fromShoppingListToPantry(item)" style="border-width: 1;" col="2"></Label>
+                    <Label class="list-group-item2" text="Remove" (tap)="removeShopList(item)" style="border-width: 1;"></Label>
                 </StackLayout>
                     
                 

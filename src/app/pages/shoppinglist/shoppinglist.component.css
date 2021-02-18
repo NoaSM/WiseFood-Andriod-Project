@@ -7,3 +7,13 @@ FlexboxLayout {
     background-image: url("https://www.mccain.com/media/2557/mccain-fries-and-appetizers.jpg")
     
   }
+  .list-group-item2{
+    
+    font-size:20%;
+    font-weight: bold;
+    
+}
+.list-group-item{
+  text-emphasis: dot thickness 40px;;
+  font-size:20%;
+}
