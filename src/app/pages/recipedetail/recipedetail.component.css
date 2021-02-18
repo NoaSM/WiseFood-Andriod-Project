@@ -1,9 +1,35 @@
 FlexboxLayout {
     
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    
+    
     background-size: cover;
     background-image: url("https://www.mccain.com/media/2557/mccain-fries-and-appetizers.jpg")
     
+  }
+  .alldetails{
+    width: 370;
+    padding: 10 16;
+    background-color: #fffdfd;
+    
+  }
+  .recipename{
+    font-size:50%;
+    justify-self: center;
+    font-weight: bold;
+  }
+  .title1{
+    font-size:30%;
+    font-weight: bold;
+  }
+  .detail1{
+    font-size:25%;
+  }
+  .btn1{
+    font-weight: bold;
+    font-size:20%;
+    color:white;
+    background-color: firebrick;
+    border-radius: 10;
+    border-color:white;
   }

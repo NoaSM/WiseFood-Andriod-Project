@@ -11,12 +11,40 @@
 }
 .list-group-item{
     text-emphasis: dot thickness 40px;;
+    font-size:20%;
 }
 .recipes-btn{
     font-weight: bold;
     font-size:20%;
+    color:white;
+    background-color: firebrick;
     border-radius: 10;
-    border-color:firebrick;
+    border-color:white;
+    border-width: 5%;
+}
+
+.SL-btn{
+    font-weight: bold;
+    font-size:20%;
+    color:white;
+    background-color: firebrick;
+    border-radius: 10;
+    border-color:white;
+    border-width: 5%;
+    width: 50%;
+}
+.list-group-item2{
+    
+    font-size:20%;
+    font-weight: bold;
+    
+}
+.list-group-item3{
+    
+    font-size:20%;
+    font-weight: bold;
+    margin-left:-10;
+    
 }
 
     

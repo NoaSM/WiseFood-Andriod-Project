@@ -6,4 +6,21 @@
     background-image: url("https://www.mccain.com/media/2557/mccain-fries-and-appetizers.jpg")
     
   }
-
+.form2{
+  width: 350;
+  padding: 10 16;
+  background-color: #fffdfd;
+}
+.listofrecipes{
+  font-size:20%;
+    font-weight: bold;
+    
+}
+.label1{
+  font-size:30%;
+    font-weight: bold;
+}
+.label2{
+  font-size:15%;
+    font-weight: bold;
+}

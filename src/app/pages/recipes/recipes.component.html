@@ -1,6 +1,15 @@
 <ActionBar title="Recipes"></ActionBar>
-<FlexboxLayout class="backround">  
-    <Label *ngFor="let item of recipeList" [text]="item.Name" (tap)="something(item)"[nsRouterLink]="['/recipedetail']"></Label> 
+<FlexboxLayout class="backround">
+    <StackLayout class="form2">
+        <StackLayout class="label1">
+            <Label text="Available recipes : "></Label>
+            <Label class="label2" text="Tap a recipe for details... "></Label>
+            <Label text=" "></Label>
+        </StackLayout>
+        <StackLayout class="listofrecipes">
+            <Label *ngFor="let item of recipeList" [text]="item.Name" (tap)="something(item)"[nsRouterLink]="['/recipedetail']"></Label> 
+        </StackLayout>
+    </StackLayout>
 </FlexboxLayout>
 
     

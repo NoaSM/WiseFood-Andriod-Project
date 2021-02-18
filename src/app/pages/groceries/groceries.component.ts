@@ -187,7 +187,7 @@ export class GroceriesComponent implements OnInit {
         console.log("dd => ",dd)
         console.log('new Date(d.text) --> ',new Date(d.text))
         let start=Date.now()
-        item.timeLeft = Math.ceil((Math.abs(start-dd)) / (1000*60*60*24 )) + " Days"
+        item.timeLeft = Math.ceil((Math.abs(start-dd)) / (1000*60*60*24 ))
         item.exDate = d.text;
         ind = i;
         console.log("1", this.SelectedIngredients[i])
@@ -228,7 +228,7 @@ export class GroceriesComponent implements OnInit {
         let start=Date.now()
         // console.log(start)
         // console.log(((Math.abs(start-dd))))
-        item.timeLeft = Math.ceil((Math.abs(start-dd)) / (1000*60*60*24 )) + " Days"
+        item.timeLeft = Math.ceil((Math.abs(start-dd)) / (1000*60*60*24 ))
         ind = i;
         // console.log(ind)
         await this.groceries.saveSelectedIngredients(item, ind)
@@ -242,7 +242,7 @@ export class GroceriesComponent implements OnInit {
   showDate(item){
     Dialogs.alert({
       title: item.Name,
-      message: item.exDate + " " + item.timeLeft + " Days",
+      message: item.exDate + " " + item.timeLeft + " Days Left",
       okButtonText: "Ok"
     })
 

@@ -3,9 +3,9 @@
 <ScrollView>
     <StackLayout>
         <SearchBar hint="Search for ingredients..." (textChange)="onTextChanged($event)"
-            (clear)="onClear($event)" (submit)="onSubmit($event)">
+            (clear)="onClear($event)" (submit)="onSubmit($event)" style="font-size: larger;">
         </SearchBar>
-        <ListView height="100" [items]="Ingredients" (itemTap)="onItemTap($event)">
+        <ListView height="60" [items]="Ingredients" (itemTap)="onItemTap($event)" style="background-color: white;">
             <ng-template let-item="item" let-i="index">
                 <GridLayout>
                     <Label [text]="item.Name" class="list-group-item" style="color:rgb(0, 0, 0)"></Label>
@@ -13,29 +13,44 @@
             </ng-template>    
         </ListView>
         
-        <ListView  class="selected-ingr-lv" (itemTap)="selectedTap($event)"  height="300" [items]="SelectedIngredients"  style="background-color: rgba(0,0,0,0.5);">
+        <ListView  class="selected-ingr-lv" (itemTap)="selectedTap($event)"  height="320" [items]="SelectedIngredients"  style="background-color: rgba(0,0,0,0.5);">
             <ng-template let-item="item" let-i="index">
+                
                 <GridLayout columns="*,auto">
-                    
-                    <StackLayout col="0,*"  orientation="horizontal"> 
-                        <Label *ngIf="item.isChecked"  text="V" style="color:green"  col="0"></Label>
-                        <Label [text]="item.Name" class="list-group-item" style="color:#fff;"  col="1"></Label>
-                        <Label text="Show date"  (tap)="showDate(item)" class="list-group-item" style="color:#fff;"  col="2"></Label>
-                        <Label text="Edit date"  (tap)="editDate(item)" class="list-group-item" style="color:#fff;"  col="3"></Label>
 
-                        <Label text="X" col="4" (tap)="remove(item)" ></Label>
+                
+                    <StackLayout col="0,*"  orientation="horizontal"> 
+                        <Label *ngIf="item.isChecked"  text="✔"    class="list-group-item" col="0" style="font-size:50%"  style="border-width: 1;" ></Label>
+                    
+                        <Label [text]="item.Name" class="list-group-item" style="color:#fff;" col="1" ></Label>
                         
-                    </StackLayout>   
+                    </StackLayout> 
+                    
+                    <StackLayout col="1" orientation="vertical" class="list-group-item2" >
+                        <Label text="Show date"  (tap)="showDate(item)" class="list-group-item2"   style="border-width: 1;"  col="0"></Label>
+                        <Label text="Edit date"  (tap)="editDate(item)" class="list-group-item2" style="border-width: 1;"   col="2"></Label>
+                        <Label text="Remove" (tap)="remove(item)" class="list-group-item2"  style="border-width: 1;"></Label>
+                    </StackLayout>
                     
                         
-                    
+                        
+                         
+                        
+                      
                 </GridLayout>
+                    
+                        
+                    
+                
             </ng-template>
             
         </ListView>
-        <Button class="recipes-btn" text="Select ingredients and show recipes!" (Tap)="isCheckedArrayFiller()"[nsRouterLink]="['/recipes']"></Button>
-        <Button text="Shopping List" [nsRouterLink]="['/shoppinglist']"></Button>
+        <StackLayout orientation="vertical" class="btns-on-bottom">
+            <Button class="recipes-btn" text="Select ingredients and show recipes!" (Tap)="isCheckedArrayFiller()"[nsRouterLink]="['/recipes']" ></Button>
+            <Button class="SL-btn" text="Go To Shopping List" [nsRouterLink]="['/shoppinglist']" ></Button>
+        </StackLayout>
+        
     </StackLayout>
-    
+
 </ScrollView>
 </FlexboxLayout>
