@@ -8,10 +8,10 @@
 
         <TextField hint="Email Address" keyboardType="email"
         [(ngModel)]="user.Email" autocorrect="false" autocapitalizationType="none" 
-		 class="input input-border"></TextField>
-		<TextField hint="Password" secure="true" [(ngModel)]="user.Password" class="input input-border"></TextField>
+		 class="input input-border" style="font-size: 15%;"></TextField>
+		<TextField hint="Password" secure="true" [(ngModel)]="user.Password" class="input input-border"style="font-size: 15%;"></TextField>
 		<Button class="btn1" text="LOGIN" (tap)="Login()"></Button>
-		<Label [nsRouterLink]="['/register']" text="Not a member? Register here." class="text-center footnote"></Label>
+		<Label [nsRouterLink]="['/register']" text="Not a member? Register here." class="text-center footnote"style="font-size: 15%;"></Label>
 	</StackLayout>
 			
 

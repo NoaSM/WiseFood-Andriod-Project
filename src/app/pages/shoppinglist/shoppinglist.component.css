@@ -17,3 +17,9 @@ FlexboxLayout {
   text-emphasis: dot thickness 40px;;
   font-size:20%;
 }
+.goback{
+
+  font-weight: bold;
+  font-size: 70%;
+  
+}

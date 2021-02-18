@@ -10,6 +10,7 @@ FlexboxLayout {
     width: 300;
     padding: 10 16;
     background-color: #fffdfd;
+    
   }
   .logo{
     font:medium;
@@ -33,4 +34,5 @@ FlexboxLayout {
     background-color: darkred;
     color:white;
     font-weight: bold;
+    font-size: 20%;
   }

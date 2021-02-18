@@ -2,13 +2,13 @@
 <FlexboxLayout class="backround">
 <ScrollView>
     <StackLayout>
-        <SearchBar hint="Search for ingredients..." (textChange)="onTextChanged($event)"
+        <SearchBar hint="Search For Ingredients..." (textChange)="onTextChanged($event)"
             (clear)="onClear($event)" (submit)="onSubmit($event)" style="font-size: larger;">
         </SearchBar>
-        <ListView height="60" [items]="Ingredients" (itemTap)="onItemTap($event)" style="background-color: white;">
+        <ListView height="35" [items]="Ingredients" (itemTap)="onItemTap($event)" style="background-color: white;" >
             <ng-template let-item="item" let-i="index">
                 <GridLayout>
-                    <Label [text]="item.Name" class="list-group-item" style="color:rgb(0, 0, 0)"></Label>
+                    <Label [text]="item.Name" class="list-group-item" style="color:rgb(0, 0, 0)" style="font-size: 16%;"></Label>
                 </GridLayout>
             </ng-template>    
         </ListView>
@@ -27,8 +27,8 @@
                     </StackLayout> 
                     
                     <StackLayout col="1" orientation="vertical" class="list-group-item2" >
-                        <Label text="Show date"  (tap)="showDate(item)" class="list-group-item2"   style="border-width: 1;"  col="0"></Label>
-                        <Label text="Edit date"  (tap)="editDate(item)" class="list-group-item2" style="border-width: 1;"   col="2"></Label>
+                        <Label text="Show Date"  (tap)="showDate(item)" class="list-group-item2"   style="border-width: 1;"  col="0"></Label>
+                        <Label text="Edit Date"  (tap)="editDate(item)" class="list-group-item2" style="border-width: 1;"   col="2"></Label>
                         <Label text="Remove" (tap)="remove(item)" class="list-group-item2"  style="border-width: 1;"></Label>
                     </StackLayout>
                     

@@ -1,27 +1,29 @@
 <ActionBar title="Recipes Details"></ActionBar>
 <FlexboxLayout class="backround">
-    <ScrollView orientation="vertical">
-        <StackLayout class="alldetails">
+    <StackLayout><label class="goback" text="⬅"  [nsRouterLink]="['/recipes']" style="font-size: 70%;"></label>
+    <ScrollView orientation="vertical" height="500" >
+        <StackLayout class="alldetails"  >
             <Label class="recipename" [text]="item.Name"></Label>
             <Label text=""></Label>
-            <Label class="title1" textWrap="true" text="The ingredients required for this recipe:"></Label> 
+            <Label class="title1" textWrap="true" text="The Ingredients Required For This Recipe:"></Label> 
             <label class="detail1" *ngFor="let ing of item.IngredientsArray" [text]="ing"></label>
             <Label text=""></Label>
-            <Label class="title1" textWrap="true" text="The ingredients you already own for this recipe:"></Label> 
+            <Label class="title1" textWrap="true" text="The Ingredients You Own For This Recipe:"></Label> 
             <label class="detail1" *ngFor="let e of existsBoth" [text]="e"></label>
             <Label text=""></Label>
             <Label class="title1" textWrap="true" text="The ingredients you miss for this recipe:"></Label>
             <label class="detail1" *ngFor="let miss of missing" [text]="miss"></label>
-            <Button class="btn1" text="Add missing ingredients to shopping list" (tap)="addToShoppinglist()"></Button>
+            <Button class="btn1" text="Add Missing Ingredients To Your Shopping List" (tap)="addToShoppinglist()"></Button>
             <Label text=""></Label>
-            <Label class="title1" text="Preparation time:"></Label>
+            <Label class="title1" text="Preparation Time:"></Label>
             <Label class="detail1" [text]="item.Preparation"></Label>
             <Label text=""></Label>
-            <Label class="title1" text="The instructions:"></Label> 
+            <Label class="title1" text="Instructions:"></Label> 
             <label class="detail1" textWrap="true" [text]="item.Instructions"></label>
         </StackLayout>
         
-    </ScrollView> 
+    </ScrollView>
+    </StackLayout>
     
     
 </FlexboxLayout>
