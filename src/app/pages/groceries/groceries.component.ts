@@ -39,7 +39,7 @@ export class GroceriesComponent implements OnInit {
   constructor(private groceries: GroceriesService,
     private router: Router
  ) {
-    this.router.events.subscribe((e) => {
+    this.router.events.subscribe((e) => { //פונקציה שעושה ריפרש לדף כל פעם שמגיעים אליו
         if (e instanceof NavigationEnd) {
             // Function you want to call here
             this.user = JSON.parse(ApplicationSettings.getString('user'));
@@ -64,16 +64,16 @@ export class GroceriesComponent implements OnInit {
 
 
   }
-  private pageLoad(){
+  private pageLoad(){//פונקציה שקורת בפעם הראשונה שנכנסים לדף
     console.log('run')
     this.loadIngredients();
     //this.selectedItems = "No Selected items.";
-    this.user = JSON.parse(ApplicationSettings.getString('user'));
+    this.user = JSON.parse(ApplicationSettings.getString('user'));//לוקח את הלוקר סטורג' של המשתמש מתוך הסרביס של המשתמש
     if (this.user.SelectedIngredients) {
-      this.SelectedIngredients = this.user.SelectedIngredients
+      this.SelectedIngredients = this.user.SelectedIngredients//מקשר ואומר שכל מה שבסלקטד יהיה קשור לסלקטד של המשתמש
       // console.log(this.SelectedIngredients)
 
-      this.refreshDate();
+      this.refreshDate();//פונקציה שעוזרת לתאריך להתדעכן באופן יומיומי
      
 
     }
@@ -83,7 +83,7 @@ export class GroceriesComponent implements OnInit {
   private async loadIngredients() {
     this.DataCollection = await this.groceries.getList(); //טוען את הרשימה ממסד הנתונים שיושב ב service
     this.DataCollection.forEach(item => {
-      item.isChecked = false;
+      item.isChecked = false;//קובע שהמצב הראשוני לכל מוצר יהיה FALSE
     });
   }
 
@@ -106,7 +106,7 @@ export class GroceriesComponent implements OnInit {
     this.onTextChanged(args);
   }
 
-  onTextChanged(args) {
+  onTextChanged(args) { //כהשמתמש מתחיל לרשום בחיפוש , הפונקציה של הפילטר עובדת
     this.searchBar = args.object as SearchBar;
     if (this.searchBar.text != '' || this.searchBar.text != undefined)
       this.filterIngredients(this.searchBar.text);
@@ -115,27 +115,27 @@ export class GroceriesComponent implements OnInit {
   }
 
   onClear(args) {
-    this.Ingredients = [];
+    this.Ingredients = []; 
   }
 
-  onItemTap(args: ItemEventData) {
+  onItemTap(args: ItemEventData) {//פונקציה שקורת כהשמתמש לוחץ על מוצר מתוך החיפוש
 
-    let item = this.Ingredients[args.index]
-    item.isChecked = false;
-    item.exDate="";
-    this.SelectedIngredients.push(item)
-    this.groceries.saveSelectedIngredients(item, this.ind)
+    let item = this.Ingredients[args.index]//הפרדה לכל מוצר כ-ITEM
+    item.isChecked = false;//כל מוצר מקבל מצב FALSE
+    item.exDate="";//כל מוצר מקבל תיבה של תאריך ריק
+    this.SelectedIngredients.push(item)//כל מוצר שנלחץ מתוך החיפוש , נכנס לתוך הרשימת מוצרים של המשתמש
+    this.groceries.saveSelectedIngredients(item, this.ind)//פונקציה מתוך הסרביס כדי לשמור את המוצרים לכל משתמש בפיירבייס ובלוקל סטורג
     this.searchBar.text = '';
     this.onClear(args);
 
   }
 
-  selectedTap(args: ItemEventData) {
+  selectedTap(args: ItemEventData) {//פונקציה הוקראת בלחיצה על כל מוצר ברשימה השמורה של המשתמש בדף הבית
 
     this.ind = args.index // האינדקס של איפה שלחצנו באפליקציה
-    let item = this.SelectedIngredients[this.ind]
-    item.isChecked = !item.isChecked
-    this.groceries.saveSelectedIngredients(item, this.ind)//פונקציה לסרביס כדי לעדכן את ה APP SETTINGS
+    let item = this.SelectedIngredients[this.ind]//המוצר הנלחץ לפי האינדקס שלו
+    item.isChecked = !item.isChecked//בלחיצה על מוצר- המוצר מקבל טרו- משתנה בוליאני
+    this.groceries.saveSelectedIngredients(item, this.ind)// פונקציה לסרביס כדי לעדכן את הפיירבייס ולוקל סטורג
     this.ind = -1 // לאפס את האינדקס
   }
   //deleteItem(args:ItemEventData){
@@ -144,7 +144,7 @@ export class GroceriesComponent implements OnInit {
   //this.groceries.saveSelectedIngredients(item)
   //}
 
-  isCheckedArrayFiller() {
+  isCheckedArrayFiller() {//פונקציה שמכניסה את המוצרים שהם עם המשתנה הבוליאני "טרו" לתוך רשימה חדשה
     this.isCheckedArray = [] // הגדרת רשימה ריקה כל קריאה חדשה לפנקציה
     this.SelectedIngredients.forEach(items => { // מעבר על כל האייטמס שהם טרו
       if (items.isChecked == true) {
@@ -153,24 +153,24 @@ export class GroceriesComponent implements OnInit {
     }
     )
     //console.log(this.isCheckedArray) // להדפיס את הרשימה (רק בשבילנו, לא לשימוש אמיתי)
-    ApplicationSettings.setString("CheckedIngredients", JSON.stringify(this.isCheckedArray))
+    ApplicationSettings.setString("CheckedIngredients", JSON.stringify(this.isCheckedArray))//שומר את הרשימה בתוך אפ - סטינגז לשימוש בעתיד
   }
 
-  async remove(item) {
+  async remove(item) {//פונקציה שמסירה מוצר מהרשימה של המשתמש
     for (let i = 0; i < this.SelectedIngredients.length; i++) {
-      if (this.SelectedIngredients[i].ID === item.ID) {
+      if (this.SelectedIngredients[i].ID === item.ID) {//עובר על כל המוצרים בלולאה ומשיג את המוצר הנבחר לפי ID
 
-        this.SelectedIngredients.splice(i, 1);
+        this.SelectedIngredients.splice(i, 1);//מוחק מהרשימה - UI
         break;
       }
     }
 
-    await this.groceries.deleteSelectedIngredients(item);
+    await this.groceries.deleteSelectedIngredients(item);//פונקציה הנמצאת בסרביס כדי לעדכן את הרשימה בפיירבייס
   }
 
-  async editDate(item){
+  async editDate(item){//פונקציה שפועלת כדי לתת למשתמש לערוך את התאריך לכל מוצר
 
-    let d = await Dialogs.prompt({
+    let d = await Dialogs.prompt({//תיבה שבא נמצא האפשרות לערוך תאריך וכפתור של שמירה
       title:"Enter date (YYYY-MM-DD)",
       okButtonText:"Save",
       cancelButtonText:"Cancel",
@@ -181,7 +181,7 @@ export class GroceriesComponent implements OnInit {
     return; 
 
     for (let i = 0; i < this.SelectedIngredients.length; i++) {
-      if (this.SelectedIngredients[i].ID === item.ID)
+      if (this.SelectedIngredients[i].ID === item.ID)//עובר על המוצרים ועובד על המוצר הנבחר לפי ה ID
        {
         let dd = new Date(d.text).getTime()
         console.log("dd => ",dd)
