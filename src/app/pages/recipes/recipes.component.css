@@ -10,7 +10,7 @@
   align-items: center;
   width: 350;
   padding: 10 16;
-  background-color: #fffdfd;
+  background-color: rgba(255, 255, 255, 0.726);;
 }
 .listofrecipes{
   font-size:30%;
@@ -20,12 +20,12 @@
 .label1{
   font-size:35%;
   font-weight: bold;
-  background-color: bisque;
+  background-color: rgba(255, 228, 196, 0.685);
 }
 .label2{
   font-size:20%;
   font-weight: bold;
-  background-color: bisque;
+  
 }
 .goback{
 
@@ -33,4 +33,7 @@
   font-size: 95;
   
   
+}
+.actionbar{
+  background-color: rgba(241, 207, 143, 0.685);
 }

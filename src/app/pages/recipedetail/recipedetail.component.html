@@ -1,4 +1,4 @@
-<ActionBar title="Recipes Details"></ActionBar>
+<ActionBar class="actionbar" title="Recipe Details"></ActionBar>
 <FlexboxLayout class="backround">
     <StackLayout><label class="goback" text="⬅"  [nsRouterLink]="['/recipes']" ></label>
     <ScrollView orientation="vertical" height="500" >
@@ -8,10 +8,10 @@
             <Label class="title1" textWrap="true" text="The Ingredients Required For This Recipe:"></Label> 
             <label class="detail1" *ngFor="let ing of item.IngredientsArray" [text]="ing"></label>
             <Label text=""></Label>
-            <Label class="title1" textWrap="true" text="The Ingredients You Own For This Recipe:"></Label> 
+            <Label class="title1" textWrap="true" text="The Ingredients You HAVE For This Recipe:"></Label> 
             <label class="detail1" *ngFor="let e of existsBoth" [text]="e"></label>
             <Label text=""></Label>
-            <Label class="title1" textWrap="true" text="The ingredients you miss for this recipe:"></Label>
+            <Label class="title1" textWrap="true" text="The Ingredients You MISS For This Recipe:"></Label>
             <label class="detail1" *ngFor="let miss of missing" [text]="miss"></label>
             <Button class="btn1" text="Add Missing Ingredients To Your Shopping List" (tap)="addToShoppinglist()"></Button>
             <Label text=""></Label>

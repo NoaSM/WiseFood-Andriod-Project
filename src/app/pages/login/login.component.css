@@ -36,3 +36,6 @@ FlexboxLayout {
     font-weight: bold;
     font-size: 20%;
   }
+  .actionbar{
+    background-color: rgba(241, 207, 143, 0.685);
+  }

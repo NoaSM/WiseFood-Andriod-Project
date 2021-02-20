@@ -11,16 +11,36 @@ FlexboxLayout {
     
     font-size:20%;
     font-weight: bold;
+    color:firebrick;
+    border-width: 2;
+    
+    background-color: rgba(255, 250, 240, 0.651);
     
 }
 .list-group-item{
   text-emphasis: dot thickness 40px;;
   font-size:20%;
+  font-weight: bold;
 }
 .goback{
 
   font-weight: bold;
   font-size: 95;
+  
+  
+}
+.checkedsign{
+  font-size: 30%;
+  color:green;
+  border-width: 1;
+  background-color: rgba(255, 250, 240, 0.664);
+}
+.selected-ingr-lv{
+  background-color:rgba(255, 255, 255, 0.726);
+}
+.actionbar{
+  
+  background-color: rgba(241, 207, 143, 0.685);
   
   
 }

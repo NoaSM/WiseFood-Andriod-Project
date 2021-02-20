@@ -1,19 +1,19 @@
-<ActionBar title="Groceries"></ActionBar>
+<ActionBar class="actionbar" title="Groceries"></ActionBar>
 <FlexboxLayout class="backround">
 <ScrollView>
     <StackLayout>
         <SearchBar hint="Search For Ingredients..." (textChange)="onTextChanged($event)"
             (clear)="onClear($event)" (submit)="onSubmit($event)" style="font-size: larger;">
         </SearchBar>
-        <ListView height="35" [items]="Ingredients" (itemTap)="onItemTap($event)" style="background-color: white;" >
+        <ListView height="35" [items]="Ingredients" (itemTap)="onItemTap($event)" style="background-color: rgba(255, 255, 255, 0.726)" >
             <ng-template let-item="item" let-i="index">
                 <GridLayout>
-                    <Label [text]="item.Name" class="list-group-item" style="color:rgb(0, 0, 0)" style="font-size: 16%;"></Label>
+                    <Label [text]="item.Name" class="list-group-item" style="color:rgb(0, 0, 0)" style="font-size: 16%;" ></Label>
                 </GridLayout>
             </ng-template>    
         </ListView>
         
-        <ListView  class="selected-ingr-lv" (itemTap)="selectedTap($event)"  height="320" [items]="SelectedIngredients"  style="background-color: rgba(0,0,0,0.5);">
+        <ListView  class="selected-ingr-lv" (itemTap)="selectedTap($event)"  height="320" [items]="SelectedIngredients"  >
             <ng-template let-item="item" let-i="index">
                 
                 <GridLayout columns="*,auto">
@@ -22,13 +22,13 @@
                     <StackLayout col="0,*"  orientation="horizontal"> 
                         <Label *ngIf="item.isChecked"  text="✔"    class="checkedsign" col="0"  ></Label>
                     
-                        <Label [text]="item.Name" class="list-group-item" style="color:#fff;" col="1" ></Label>
+                        <Label [text]="item.Name" class="list-group-item" style="color:rgb(0, 0, 0);" style="font-weight: bold;" col="1" ></Label>
                         
                     </StackLayout> 
                     
-                    <StackLayout col="1" orientation="vertical" class="list-group-item2" >
-                        <Label text="Show Date"  (tap)="showDate(item)" class="list-group-item2"    col="0"></Label>
-                        <Label text="Edit Date"  (tap)="editDate(item)" class="list-group-item2"    col="2"></Label>
+                    <StackLayout col="1" orientation="vertical"  >
+                        <Label text="Show Date"  (tap)="showDate(item)" class="list-group-item2"    ></Label>
+                        <Label text="Edit Date"  (tap)="editDate(item)" class="list-group-item2"    ></Label>
                         <Label text="Remove" (tap)="remove(item)" class="list-group-item2"  ></Label>
                     </StackLayout>
                     
@@ -46,7 +46,7 @@
             
         </ListView>
         <StackLayout orientation="vertical" class="btns-on-bottom">
-            <Button class="recipes-btn" text="Select ingredients and show recipes!" (Tap)="isCheckedArrayFiller()"[nsRouterLink]="['/recipes']" ></Button>
+            <Button class="recipes-btn" text="Select Ingredients And Show Recipes!" (Tap)="isCheckedArrayFiller()"[nsRouterLink]="['/recipes']" ></Button>
             <Button class="SL-btn" text="Go To Shopping List" [nsRouterLink]="['/shoppinglist']" ></Button>
         </StackLayout>
         
