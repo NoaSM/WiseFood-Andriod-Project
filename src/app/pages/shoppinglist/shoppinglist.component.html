@@ -1,6 +1,6 @@
 <ActionBar title="Shopping List"></ActionBar>
 <FlexBoxLayout >
-    <StackLayout><label class="goback" text="⬅" [nsRouterLink]="['/groceries']" style="font-size: 70%;"></label>
+    <StackLayout><label class="goback" text="⬅" [nsRouterLink]="['/groceries']" ></label>
     <ListView  class="selected-ingr-lv"  height="500" (itemTap)="onSelectedTap($event)" [items]="ShoppingList" style="background-color: rgba(0,0,0,0.5);">
         <ng-template let-item="item" let-i="index">
             <GridLayout columns="*,auto">

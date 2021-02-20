@@ -37,7 +37,10 @@
     
     font-size:20%;
     font-weight: bold;
-    
+    color:firebrick;
+    border-width: 1;
+    border-color: black;
+    background-color: floralwhite;
 }
 .list-group-item3{
     
@@ -45,6 +48,12 @@
     font-weight: bold;
     margin-left:-10;
     
+}
+.checkedsign{
+    font-size: 30%;
+    color:green;
+    border-width: 1;
+    background-color: floralwhite;
 }
 
     

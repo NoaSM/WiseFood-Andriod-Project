@@ -17,14 +17,17 @@ FlexboxLayout {
     font-size:50%;
     justify-self: center;
     font-weight: bold;
+    background-color: bisque;
     
   }
   .title1{
     font-size:25%;
     font-weight: bold;
+    background-color: bisque;
   }
   .detail1{
     font-size:20%;
+    font-weight: bold;
   }
   .btn1{
     font-weight: bold;
@@ -37,6 +40,6 @@ FlexboxLayout {
   .goback{
 
     font-weight: bold;
-    font-size: 70%;
+    font-size:95;
     
   }

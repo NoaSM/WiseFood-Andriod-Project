@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApplicationSettings } from '@nativescript/core';
 import { Users } from 'src/app/services/users.service';
 import { GroceriesService } from '../../services/groceries.service'
+import { Dialogs } from "@nativescript/core"
 
 @Component({
   selector: 'ns-recipedetail',
@@ -22,6 +23,11 @@ export class RecipedetailComponent implements OnInit {
 
   }
   addToShoppinglist(){
+    Dialogs.alert({
+      title: "Items been added to your shopping list!",
+      message: "",
+      okButtonText: "Ok"
+    })
     console.log("hi")
     this.groceries.saveShoppingList(this.missing)
     console.log("hi2")

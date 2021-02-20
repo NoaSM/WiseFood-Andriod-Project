@@ -20,16 +20,16 @@
 
                 
                     <StackLayout col="0,*"  orientation="horizontal"> 
-                        <Label *ngIf="item.isChecked"  text="✔"    class="list-group-item" col="0" style="font-size:50%"  style="border-width: 1;" ></Label>
+                        <Label *ngIf="item.isChecked"  text="✔"    class="checkedsign" col="0"  ></Label>
                     
                         <Label [text]="item.Name" class="list-group-item" style="color:#fff;" col="1" ></Label>
                         
                     </StackLayout> 
                     
                     <StackLayout col="1" orientation="vertical" class="list-group-item2" >
-                        <Label text="Show Date"  (tap)="showDate(item)" class="list-group-item2"   style="border-width: 1;"  col="0"></Label>
-                        <Label text="Edit Date"  (tap)="editDate(item)" class="list-group-item2" style="border-width: 1;"   col="2"></Label>
-                        <Label text="Remove" (tap)="remove(item)" class="list-group-item2"  style="border-width: 1;"></Label>
+                        <Label text="Show Date"  (tap)="showDate(item)" class="list-group-item2"    col="0"></Label>
+                        <Label text="Edit Date"  (tap)="editDate(item)" class="list-group-item2"    col="2"></Label>
+                        <Label text="Remove" (tap)="remove(item)" class="list-group-item2"  ></Label>
                     </StackLayout>
                     
                         

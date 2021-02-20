@@ -20,14 +20,17 @@
 .label1{
   font-size:35%;
   font-weight: bold;
+  background-color: bisque;
 }
 .label2{
   font-size:20%;
   font-weight: bold;
+  background-color: bisque;
 }
 .goback{
 
   font-weight: bold;
-  font-size: 70%;
+  font-size: 95;
+  
   
 }
