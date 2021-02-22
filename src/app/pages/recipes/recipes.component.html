@@ -10,8 +10,15 @@
                 
             </StackLayout>
             <StackLayout class="listofrecipes">
-                <Label text=" "></Label>
-                <Label *ngFor="let item of recipeList" [text]="item.Name" (tap)="something(item)"[nsRouterLink]="['/recipedetail']"></Label> 
+                <ListView height="100" [items]="recipeList" (itemTap)="something($event)" style="background-color: rgba(255, 255, 255, 0.726)" >
+                    <ng-template let-item="item" let-i="index">
+                        <GridLayout>
+                            <Label [text]="item.Name" class="list-group-item" style="color:rgb(0, 0, 0)" style="font-size: 16%;" ></Label>
+                        </GridLayout>
+                    </ng-template>    
+                </ListView>
+                
+                
             </StackLayout>
         </StackLayout>
     </StackLayout>

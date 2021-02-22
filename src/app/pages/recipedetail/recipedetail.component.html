@@ -1,4 +1,12 @@
-<ActionBar class="actionbar" title="Recipe Details"></ActionBar>
+<ActionBar class="actionbar" title="Recipe Details">
+    <ActionItem >
+        <GridLayout width="100">
+              <Button text="⬅"  [nsRouterLink]="['/recipes']"></Button>
+        </GridLayout>
+  </ActionItem>
+
+
+</ActionBar>
 <FlexboxLayout class="backround">
     <StackLayout><label class="goback" text="⬅"  [nsRouterLink]="['/recipes']" ></label>
     <ScrollView orientation="vertical" height="500" >

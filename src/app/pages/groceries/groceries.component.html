@@ -22,8 +22,8 @@
                     <StackLayout col="0,*"  orientation="horizontal"> 
                         <Label *ngIf="item.isChecked"  text="✔"    class="checkedsign" col="0"  ></Label>
                     
-                        <Label [text]="item.Name" class="list-group-item" style="color:rgb(0, 0, 0);" style="font-weight: bold;" col="1" ></Label>
-                        
+                        <Label  [text]="item.Name" class="list-group-item" style="color:rgb(0, 0, 0);" style="font-weight: bold;" col="1" ></Label>
+                        <Label  *ngIf="item.exDate != undefined && item.exDate == 'Expired!' " text="(Expired)" class="list-group-item" style="color:rgb(0, 0, 0);" style="font-weight: bold;" col="1" ></Label>
                     </StackLayout> 
                     
                     <StackLayout col="1" orientation="vertical"  >

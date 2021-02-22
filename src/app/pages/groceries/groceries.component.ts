@@ -187,8 +187,16 @@ export class GroceriesComponent implements OnInit {
         console.log("dd => ",dd)
         console.log('new Date(d.text) --> ',new Date(d.text))
         let start=Date.now()
-        item.timeLeft = Math.ceil((Math.abs(start-dd)) / (1000*60*60*24 ))
-        item.exDate = d.text;
+        let time = dd - start
+        if(time < 0){
+          item.exDate = "Expired!"
+          item.timeLeft="0"
+        }
+        else{
+          item.timeLeft = Math.ceil((Math.abs(time)) / (1000*60*60*24 ))
+          item.exDate = d.text;
+        }
+        
         ind = i;
         console.log("1", this.SelectedIngredients[i])
         console.log("2",item)
@@ -240,13 +248,28 @@ export class GroceriesComponent implements OnInit {
   }
 
   showDate(item){
-    Dialogs.alert({
-      title: item.Name,
-      message: item.exDate + " " + item.timeLeft + " Days Left",
-      okButtonText: "Ok"
-    })
+    if(item.exDate != "Expired!" && item.exDate != ""){
+      Dialogs.alert({
+        title: item.Name,
+        message: item.exDate + " " + item.timeLeft + " Days Left",
+        okButtonText: "Ok"
+      })
+    }
+    else if(item.exDate == ""){
+      Dialogs.alert({
+        title: item.Name,
+        message: "Please Add Expiration Date",
+        okButtonText: "Ok"
+      })
+    }
+    else{
+      Dialogs.alert({
+        title: item.Name,
+        message: item.exDate,
+        okButtonText: "Ok"
+      })
+    }
 
-    
   }
   //deleteItem(args: ItemEventData) {
 

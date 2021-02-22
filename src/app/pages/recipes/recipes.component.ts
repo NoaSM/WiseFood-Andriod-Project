@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { GroceriesService } from '../../services/groceries.service'
 import { RecipesService } from '../../services/recipes.service'
 import { Users } from 'src/app/services/users.service';
-import { ApplicationSettings } from '@nativescript/core';
+import { ApplicationSettings, ItemEventData } from '@nativescript/core';
 import { firestore } from "@nativescript/firebase";
+import { Router,NavigationEnd } from '@angular/router';
 //import { CheckedIngredients } from '../groceries/groceries.component'
 
 
@@ -22,7 +23,8 @@ export class RecipesComponent implements OnInit {
   
  // public CheckedIngredients:[];
 
-  constructor(private groceries: GroceriesService, private recipes: RecipesService) { }
+  constructor(private groceries: GroceriesService, private recipes: RecipesService,  private router: Router)  {
+   }
 
   ngOnInit(): void {
 
@@ -51,7 +53,8 @@ export class RecipesComponent implements OnInit {
     this.recipeList = [...rList];//מפשט לאוביקט push the relevent recipes into a new array - recipelist
     // console.log('recipeList => ',this.recipeList[0].Name)
   }
-  something(item){ //item comes from recipes html ngfor which contains the fields of the recipe collection
+  something(args: ItemEventData){ //item comes from recipes html ngfor which contains the fields of the recipe collection
+    let item = this.recipeList[args.index];
     let existsBothArray = [];//a new array that will contain the ingredients that exists in both the relevent recipe to the user and the user's selected ingredients
     let missingIngredients=Object.assign([], item.IngredientsArray);
     console.log("I pressed ", item.Name);
@@ -71,7 +74,7 @@ export class RecipesComponent implements OnInit {
     ApplicationSettings.setString("missing", JSON.stringify(missingIngredients))
     // console.log("The ingredients list:", item.IngredientsArray);
     // console.log("the user ingredients are:", this.user.SelectedIngredients)
-    
+    this.router.navigate(["/recipedetail"])
   }
 
 }

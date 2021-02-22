@@ -3,6 +3,8 @@ import { ApplicationSettings } from '@nativescript/core';
 import { Users } from 'src/app/services/users.service';
 import { GroceriesService } from '../../services/groceries.service'
 import { Dialogs } from "@nativescript/core"
+import { RouterExtensions } from "@nativescript/angular";
+
 
 @Component({
   selector: 'ns-recipedetail',
@@ -14,7 +16,8 @@ export class RecipedetailComponent implements OnInit {
   public item;
   public missing:[];
 
-  constructor(private groceries: GroceriesService) { }
+  constructor(private groceries: GroceriesService, private routerExtensions: RouterExtensions
+    ) { }
 
   ngOnInit(): void {
     this.existsBoth = JSON.parse(ApplicationSettings.getString('existsBoth'));
@@ -31,6 +34,10 @@ export class RecipedetailComponent implements OnInit {
     console.log("hi")
     this.groceries.saveShoppingList(this.missing)
     console.log("hi2")
+  }
+  goBack(){
+    this.routerExtensions.backToPreviousPage();
+
   }
 
 }
