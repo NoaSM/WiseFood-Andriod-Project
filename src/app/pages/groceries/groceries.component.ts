@@ -177,7 +177,7 @@ export class GroceriesComponent implements OnInit {
     })
     let ind;
 
-    if(d.text =='')
+    if(d.text =='' || d.result==false)
     return; 
 
     for (let i = 0; i < this.SelectedIngredients.length; i++) {

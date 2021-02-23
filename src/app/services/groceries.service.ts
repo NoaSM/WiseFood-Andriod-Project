@@ -160,7 +160,15 @@ export class GroceriesService {
   public async DelAndUp(item, ind){
     let user = JSON.parse(await ApplicationSettings.getString('user'));
     user.ShoppingList.splice(ind, 1)
-    let ind_2 = user.SelectedIngredients.indexOf(item, 0)
+    // console.log(item)
+    // console.log(user.SelectedIngredients)
+    let ind_2 = -1
+    for (let i = 0; i < user.SelectedIngredients.length; i++) {
+      if (user.SelectedIngredients[i].ID === item.ID) {
+        ind_2 = i
+      }
+    }
+    // let ind_2 = user.SelectedIngredients.indexOf(item, 0)
     item.isChecked = false
     item.exDate = ""
     if (ind_2 <= -1){
