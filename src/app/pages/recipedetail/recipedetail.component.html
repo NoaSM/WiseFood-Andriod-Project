@@ -1,17 +1,17 @@
 <ActionBar class="actionbar" title="Recipe Details">
     <ActionItem >
         <GridLayout width="100">
-              <Button text="⬅"  [nsRouterLink]="['/recipes']"></Button>
+              <Button text="BACK" class="back" [nsRouterLink]="['/recipes']"></Button>
         </GridLayout>
   </ActionItem>
 
 
 </ActionBar>
 <FlexboxLayout class="backround">
-    <StackLayout><label class="goback" text="⬅"  [nsRouterLink]="['/recipes']" ></label>
-    <ScrollView orientation="vertical" height="500" >
+    
+    <ScrollView orientation="vertical" height="700" >
         <StackLayout class="alldetails"  >
-            <Label class="recipename" [text]="item.Name"></Label>
+            <Label class="recipename" textWrap="true" [text]="item.Name"></Label>
             <Label text=""></Label>
             <Label class="title1" textWrap="true" text="The Ingredients Required For This Recipe:"></Label> 
             <label class="detail1" *ngFor="let ing of item.IngredientsArray" [text]="ing"></label>
@@ -33,7 +33,7 @@
         </StackLayout>
         
     </ScrollView>
-    </StackLayout>
+    
     
     
 </FlexboxLayout>

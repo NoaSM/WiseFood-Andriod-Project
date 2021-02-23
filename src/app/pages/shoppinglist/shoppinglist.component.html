@@ -1,6 +1,12 @@
-<ActionBar  class="actionbar" title="Shopping List"></ActionBar>
+<ActionBar  class="actionbar" title="Shopping List">
+    <ActionItem >
+        <GridLayout width="100">
+              <Button text="BACK" class="back" [nsRouterLink]="['/groceries']"></Button>
+        </GridLayout>
+  </ActionItem>
+</ActionBar>
 <FlexBoxLayout >
-    <StackLayout><label class="goback" text="⬅" [nsRouterLink]="['/groceries']" ></label>
+    <Label class="label1" textWrap="true" text="*Ingredients In Shopping List Can Be Added Through The Recipe"></Label>
     <ListView  class="selected-ingr-lv"  height="500" (itemTap)="onSelectedTap($event)" [items]="ShoppingList" >
         <ng-template let-item="item" let-i="index">
             <GridLayout columns="*,auto">
@@ -20,6 +26,6 @@
         </ng-template>
         
     </ListView>
-    </StackLayout>  
+     
 </FlexBoxLayout>
 

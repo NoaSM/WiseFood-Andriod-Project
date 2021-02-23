@@ -1,19 +1,25 @@
-<ActionBar class="actionbar" title="Recipes"></ActionBar>
+<ActionBar class="actionbar" title="Recipes">
+    <ActionItem >
+        <GridLayout width="100">
+              <Button text="BACK" class="back" [nsRouterLink]="['/groceries']"></Button>
+        </GridLayout>
+  </ActionItem>
+</ActionBar>
 
 <FlexboxLayout class="backround">
-    <StackLayout><label class="goback" text="⬅" [nsRouterLink]="['/groceries']" ></label>
+    
         <StackLayout class="form2">
             <StackLayout class="label1">
                 <Label text="Available Recipes : "></Label>
                 <Label text=" "></Label>
-                <Label class="label2" text="Tap a recipe for details... "></Label>
+                <Label class="label2" text="*Tap a recipe for details... "></Label>
                 
             </StackLayout>
             <StackLayout class="listofrecipes">
-                <ListView height="100" [items]="recipeList" (itemTap)="something($event)" style="background-color: rgba(255, 255, 255, 0.726)" >
+                <ListView height="400" [items]="recipeList" (itemTap)="something($event)" style="background-color: rgba(255, 255, 255, 0.726)" >
                     <ng-template let-item="item" let-i="index">
                         <GridLayout>
-                            <Label [text]="item.Name" class="list-group-item" style="color:rgb(0, 0, 0)" style="font-size: 16%;" ></Label>
+                            <Label [text]="item.Name" class="list-group-item" style="color:rgb(0, 0, 0)" style="font-size: 20%;" ></Label>
                         </GridLayout>
                     </ng-template>    
                 </ListView>
@@ -21,7 +27,7 @@
                 
             </StackLayout>
         </StackLayout>
-    </StackLayout>
+    
 </FlexboxLayout>
 
 

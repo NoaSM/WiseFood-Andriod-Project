@@ -1,4 +1,10 @@
-<ActionBar class="actionbar" title="Groceries"></ActionBar>
+<ActionBar class="actionbar" title="Groceries">
+    <ActionItem >
+        <GridLayout width="100">
+              <Button text="LOGOUT" class="back" [nsRouterLink]="['/login']"></Button>
+        </GridLayout>
+  </ActionItem>
+</ActionBar>
 <FlexboxLayout class="backround">
 <ScrollView>
     <StackLayout>
@@ -12,8 +18,8 @@
                 </GridLayout>
             </ng-template>    
         </ListView>
-        
-        <ListView  class="selected-ingr-lv" (itemTap)="selectedTap($event)"  height="320" [items]="SelectedIngredients"  >
+
+        <ListView  class="selected-ingr-lv" (itemTap)="selectedTap($event)"  height="400" [items]="SelectedIngredients"  >
             <ng-template let-item="item" let-i="index">
                 
                 <GridLayout columns="*,auto">
@@ -45,9 +51,15 @@
             </ng-template>
             
         </ListView>
-        <StackLayout orientation="vertical" class="btns-on-bottom">
-            <Button class="recipes-btn" text="Select Ingredients And Show Recipes!" (Tap)="isCheckedArrayFiller()"[nsRouterLink]="['/recipes']" ></Button>
-            <Button class="SL-btn" text="Go To Shopping List" [nsRouterLink]="['/shoppinglist']" ></Button>
+        <ScrollView orientation="horizontal">
+            <StackLayout orientation="horizontal" class="btns-on-bottom">
+                <Button class="recipes-btn" text="Click For Recipes!" (Tap)="isCheckedArrayFiller()"[nsRouterLink]="['/recipes']" ></Button>
+                <Button class="SL-btn" text="Go To Shopping List" [nsRouterLink]="['/shoppinglist']" ></Button>
+            </StackLayout>
+
+        </ScrollView>
+        <StackLayout>
+            <Label class="label1" text="*Please Choose Ingredients For Recipes"></Label>
         </StackLayout>
         
     </StackLayout>

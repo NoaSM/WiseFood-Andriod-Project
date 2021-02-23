@@ -14,17 +14,18 @@
 }
 .recipes-btn{
     font-weight: bold;
-    font-size:20%;
+    font-size:17%;
     color:white;
     background-color: firebrick;
     border-radius: 10;
     border-color:white;
     border-width: 5%;
+    width: 70%;
 }
 
 .SL-btn{
     font-weight: bold;
-    font-size:20%;
+    font-size:17%;
     color:white;
     background-color: firebrick;
     border-radius: 10;
@@ -59,6 +60,17 @@
 }
 .actionbar{
     background-color: rgba(241, 207, 143, 0.685);
+  }
+  .label1{
+    font-size:22%;
+    font-weight: bold;
+    border-width: 1;
+    background-color: rgba(255, 250, 240, 0.836);
+  }
+  .back{
+    font-weight: bold;
+    font-size: 15%;
+    
   }
 
     

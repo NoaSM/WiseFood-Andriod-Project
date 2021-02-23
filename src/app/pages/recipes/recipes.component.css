@@ -37,3 +37,7 @@
 .actionbar{
   background-color: rgba(241, 207, 143, 0.685);
 }
+.back{
+  font-weight: bold;
+  font-size: 20%;
+}
