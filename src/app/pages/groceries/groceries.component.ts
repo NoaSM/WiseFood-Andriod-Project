@@ -234,13 +234,22 @@ export class GroceriesComponent implements OnInit {
         let dd = new Date(item.exDate).getTime()
         // console.log(dd)
         let start=Date.now()
+        let time = dd - start
+        if(time < 0){
+          item.exDate = "Expired!"
+          item.timeLeft="0"
+        }
+        else{
+          item.timeLeft = Math.ceil((Math.abs(time)) / (1000*60*60*24 ))
+          
+        }
         // console.log(start)
         // console.log(((Math.abs(start-dd))))
-        item.timeLeft = Math.ceil((Math.abs(start-dd)) / (1000*60*60*24 ))
+        
         ind = i;
-        // console.log(ind)
+        //console.log(ind)
         await this.groceries.saveSelectedIngredients(item, ind)
-        // console.log(item)
+        //console.log(item)
       }
 
     }
