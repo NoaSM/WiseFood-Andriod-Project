@@ -4,6 +4,7 @@ import { RecipesService } from '../../services/recipes.service'
 import { Users } from 'src/app/services/users.service';
 import { ApplicationSettings } from '@nativescript/core';
 import { ItemEventData } from "@nativescript/core/ui/list-view";
+import { Dialogs } from "@nativescript/core"
 @Component({
   selector: 'ns-shoppinglist',
   templateUrl: './shoppinglist.component.html',
@@ -49,7 +50,11 @@ export class ShoppinglistComponent implements OnInit {
   }
 
   fromShoppingListToPantry(item){
-
+    Dialogs.alert({
+      title: "The Item Has Moved To Your Pantry List",
+      message: "",
+      okButtonText: "Ok"
+    })
     let ind = this.ShoppingList.indexOf(item, 0)
     this.ShoppingList.splice(ind, 1)
     this.groceries.DelAndUp(item, ind)
