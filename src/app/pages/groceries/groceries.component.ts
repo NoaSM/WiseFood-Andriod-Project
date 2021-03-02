@@ -257,10 +257,11 @@ export class GroceriesComponent implements OnInit {
   }
 
   showDate(item){
+    this.refreshDate();
     if(item.exDate != "Expired!" && item.exDate != ""){
       Dialogs.alert({
         title: item.Name,
-        message: item.exDate + " " + item.timeLeft + " Days Left",
+        message: item.exDate + " " + item.timeLeft + " Day(s) Left",
         okButtonText: "Ok"
       })
     }

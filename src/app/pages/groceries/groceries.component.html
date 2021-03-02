@@ -25,12 +25,13 @@
                 <GridLayout columns="*,auto">
 
                     
-                    <StackLayout col="0,*"  orientation="horizontal"> 
-                        <Label *ngIf="item.isChecked"  text="✔"    class="checkedsign" col="0"  ></Label>
+                    <StackLayout col="0,*"  orientation="horizontal">
+                        <Label *ngIf="item.isChecked == false"  text="☐"    class="checkedsign" col="0"></Label>
+                        <Label *ngIf="item.isChecked"  text="☑"    class="checkedsign" col="0"  ></Label>
                     
                     
                         <Label  [text]="item.Name" class="list-group-item" style="color:rgb(0, 0, 0);" style="font-weight: bold;" col="1" ></Label>
-                        <Label  *ngIf="item.exDate != undefined && item.exDate == 'Expired!' " text="(Expired)" class="list-group-item" style="color:rgb(0, 0, 0);" style="font-weight: bold;" col="1" ></Label>
+                        <Label  *ngIf="item.exDate != undefined && item.exDate == 'Expired!' " text="(Expired)" class="expiredlabel" style="color:rgb(0, 0, 0);" style="font-weight: bold;" col="1" ></Label>
                     </StackLayout> 
                     
                     <StackLayout col="1" orientation="vertical"  >

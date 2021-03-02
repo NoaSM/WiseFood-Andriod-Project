@@ -52,7 +52,7 @@
 .checkedsign{
     font-size: 30%;
     color:green;
-    border-width: 1;
+    
     background-color: rgba(255, 250, 240, 0.664);
 }
 .selected-ingr-lv{
@@ -71,6 +71,9 @@
     font-weight: bold;
     font-size: 13%;
     
+  }
+  .expiredlabel{
+    font-size: 13%;
   }
 
     
