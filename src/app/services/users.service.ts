@@ -38,7 +38,7 @@ export class UsersService {
         this.zone.run(() => {
           this.router.navigate(['/login']);
         });
-        //this.router.navigate(["/login"])
+        
       })
       .catch(err => console.log("Login error: " + JSON.stringify(err)));
 
@@ -52,20 +52,9 @@ export class UsersService {
         this.zone.run(() => {
           this.router.navigate(['/groceries']);
         });
-        //this.router.navigate(["/groceries"])
+        
       })
       .catch(err => console.log("Login error: " + JSON.stringify(err)));
   }
 
-
-
-
-  //firestore.collection("Users").doc(user.id).set({
-  //Email:user.Email,
-  //ID: user.ID,
-  //Password: user.Password,
-  //Username: user.Username,
-  //SelectedIngredients: []
-
-  //});
 }

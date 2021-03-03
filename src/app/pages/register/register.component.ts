@@ -19,22 +19,13 @@ export class RegisterComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    //this.user = new Users();
+    
   }
   
 
   userAdding() {
     console.log(this.user)
     this.users.addUser(this.user)
-    // this.users.addUser(this.user)
-    //   .then(() => {
-    //     this.isAuthenticating = false;
-        
-    //   //  this.toggleDisplay();
-    //   })
-    //   .catch((message:any) => {
-    //     alert(message);
-    //     this.isAuthenticating = false;
-    //   });
+    
   }
 }

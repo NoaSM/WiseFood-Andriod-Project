@@ -1,14 +1,13 @@
 import { Component, OnInit, ɵɵNgOnChangesFeature, AfterViewInit, OnChanges } from '@angular/core';
 import { GroceriesService } from '../../services/groceries.service'
-import { RecipesService } from '../../services/recipes.service'
-//import { RecipesService } from '../../services/recipes.service'
+
+
 import { SearchBar } from "@nativescript/core/ui/search-bar";
 import { ItemEventData } from "@nativescript/core/ui/list-view";
-import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
-import { ListViewEventData, RadListView } from "nativescript-ui-listview";
+
 import { Users } from 'src/app/services/users.service';
 import { ApplicationSettings, ObservableArray } from '@nativescript/core';
-import { DatePicker } from "@nativescript/core";
+
 import { Dialogs } from "@nativescript/core"
 import { Router,NavigationEnd } from '@angular/router';
 
@@ -28,7 +27,7 @@ export class GroceriesComponent implements OnInit {
   public searchBar: SearchBar;
   public NativeScriptUIListViewModule;
   public ListViewEventData;
-  //public selectedItems: string;
+  
   public dataItems: [];
   public user: Users;
   public isChecked: false;
@@ -41,10 +40,10 @@ export class GroceriesComponent implements OnInit {
  ) {
     this.router.events.subscribe((e) => { //פונקציה שעושה ריפרש לדף כל פעם שמגיעים אליו
         if (e instanceof NavigationEnd) {
-            // Function you want to call here
+            
             this.user = JSON.parse(ApplicationSettings.getString('user'));
             this.SelectedIngredients = this.user.SelectedIngredients
-              console.log('const')
+              
         
             this.refreshDate();
         }
@@ -53,9 +52,7 @@ export class GroceriesComponent implements OnInit {
   
   
 
-  // get SelectedItems(): string {
-  //return this.selectedItems;
-  //}
+
 
 
 
@@ -65,13 +62,13 @@ export class GroceriesComponent implements OnInit {
 
   }
   private pageLoad(){//פונקציה שקורת בפעם הראשונה שנכנסים לדף
-    console.log('run')
+    
     this.loadIngredients();
-    //this.selectedItems = "No Selected items.";
+    
     this.user = JSON.parse(ApplicationSettings.getString('user'));//לוקח את הלוקר סטורג' של המשתמש מתוך הסרביס של המשתמש
     if (this.user.SelectedIngredients) {
       this.SelectedIngredients = this.user.SelectedIngredients//מקשר ואומר שכל מה שבסלקטד יהיה קשור לסלקטד של המשתמש
-      // console.log(this.SelectedIngredients)
+      
 
       this.refreshDate();//פונקציה שעוזרת לתאריך להתדעכן באופן יומיומי
      
@@ -91,9 +88,7 @@ export class GroceriesComponent implements OnInit {
     this.Ingredients = [];
     try {
       this.DataCollection.forEach(item => {
-        // console.log(!this.SelectedIngredients.includes(item.data()))
-        // console.log(item.data().Name.toLowerCase().indexOf(text.toLocaleLowerCase()) != -1)
-        // console.log(item.data()["Name"])
+
         if (item.data().Name.toLowerCase().indexOf(text.toLocaleLowerCase()) != -1 && !this.SelectedIngredients.filter(items => items.Name === item.data()["Name"])[0]) //אם שם הפריט מכיל את מה שכתוב בתיבת החיפוש
           this.Ingredients.push(item.data()) //תוסיף את הפריט לרשימה המוצגת
       });
@@ -138,11 +133,7 @@ export class GroceriesComponent implements OnInit {
     this.groceries.saveSelectedIngredients(item, this.ind)// פונקציה לסרביס כדי לעדכן את הפיירבייס ולוקל סטורג
     this.ind = -1 // לאפס את האינדקס
   }
-  //deleteItem(args:ItemEventData){
-  // let item = this.SelectedIngredients[args.index]
-  //item.delete().catch((error) => { alert(error); });
-  //this.groceries.saveSelectedIngredients(item)
-  //}
+
 
   isCheckedArrayFiller() {//פונקציה שמכניסה את המוצרים שהם עם המשתנה הבוליאני "טרו" לתוך רשימה חדשה
     this.isCheckedArray = [] // הגדרת רשימה ריקה כל קריאה חדשה לפנקציה
@@ -152,7 +143,7 @@ export class GroceriesComponent implements OnInit {
       }
     }
     )
-    //console.log(this.isCheckedArray) // להדפיס את הרשימה (רק בשבילנו, לא לשימוש אמיתי)
+    
     ApplicationSettings.setString("CheckedIngredients", JSON.stringify(this.isCheckedArray))//שומר את הרשימה בתוך אפ - סטינגז לשימוש בעתיד
   }
 
@@ -219,20 +210,19 @@ export class GroceriesComponent implements OnInit {
 
 
   async refreshDate(){
-    console.log('refDate')
+   
     if (this.SelectedIngredients === []){
       return;
     }
     let ind;
-    // let len = this.SelectedIngredients.length
+    
     for (let i = 0; i < this.SelectedIngredients.length; i++) {
       let item = Object.assign({}, this.SelectedIngredients[i])
-      // console.log(this.SelectedIngredients[i])
-      // console.log(item)
+
       if (item.exDate != "") // צריך לערוך את זה לפי מה שמוגדר הערך הראשון של התאריך
        {
         let dd = new Date(item.exDate).getTime()
-        // console.log(dd)
+        
         let start=Date.now()
         let time = dd - start
         if(time < 0){
@@ -243,13 +233,12 @@ export class GroceriesComponent implements OnInit {
           item.timeLeft = Math.ceil((Math.abs(time)) / (1000*60*60*24 ))
           
         }
-        // console.log(start)
-        // console.log(((Math.abs(start-dd))))
+        
         
         ind = i;
-        //console.log(ind)
+        
         await this.groceries.saveSelectedIngredients(item, ind)
-        //console.log(item)
+        
       }
 
     }
@@ -281,49 +270,5 @@ export class GroceriesComponent implements OnInit {
     }
 
   }
-  //deleteItem(args: ItemEventData) {
-
-
-  //let item = this.SelectedIngredients[args.index]
-  //this.SelectedIngredients.splice(item)
-  //this.groceries.saveSelectedIngredients(item, this.ind)
-  //
-  //onItemSelected(args: ListViewEventData) {
-  //const listview = args.object as RadListView;
-  //const selectedItems = this.SelectedIngredients //listview.getSelectedItems() as this.SelectedIngredients;
-  //let selectedTitles = "Selected items: ";
-  //for (let i = 0; i < selectedItems.length; i++) {
-  //selectedTitles += selectedItems[i] ? selectedItems[i].name : "";
-
-  //if (i < selectedItems.length - 1) {
-  //selectedTitles += ", ";
-  //}
-  //}
-
-  //this.selectedItems = selectedTitles;
-  // const selectedItem = this.filterIngredients[args.index];
-  //console.log("Item selected: " + (selectedItem && selectedItem.name));
-  //}
-  //onItemSelecting(args: ListViewEventData) {
-  //const listview = args.object as RadListView;
-  //const selectedItems = this.SelectedIngredients
-  // const selectedItems = listview.getSelectedItems();
-  //let selectedTitles = "Selecting item: ";
-  //for (let i = 0; i < selectedItems.length; i++) {
-  //selectedTitles += selectedItems[i] ? selectedItems[i].name : "";
-
-  //if (i < selectedItems.length - 1) {
-  //selectedTitles += ", ";
-  //}
-  //}
-  //const selectedItem = this.Ingredients.getItem(args.index);
-  //console.log("Item selecting: " + (selectedItem && selectedItem.name));
-  //const selectedItem = this.filterIngredients[args.index];
-  // console.log("Item selecting: " + (selectedItem && selectedItem.name));
-  // }
-
-
-
-
 }
 

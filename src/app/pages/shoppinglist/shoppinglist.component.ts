@@ -58,19 +58,9 @@ export class ShoppinglistComponent implements OnInit {
     let ind = this.ShoppingList.indexOf(item, 0)
     this.ShoppingList.splice(ind, 1)
     this.groceries.DelAndUp(item, ind)
-    // this.groceries.deleteShoppingList(item)
-    // this.groceries.updatePantry(item)
+    
   }
-    // כל מני פעולות על שופינג ליסט כדי שיראו כמו שאני רוצה
-    // for all items that do not look like the map that i want:
-      // for all items in shopping list:
-      //   name = item.name
-      //   find name in ingredients and take its ID
-      //   initilize shopping list as map:
-      //     ID: its id
-      //     Name: its name
-      //     IsChecked: false
-      //hi
+  
   }
 
 

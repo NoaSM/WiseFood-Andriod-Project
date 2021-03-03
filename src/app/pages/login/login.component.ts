@@ -21,9 +21,7 @@ export class LoginComponent implements OnInit {
   async Login() {
     console.log(this.user)
     await this.usersService.loginUser(this.user)
-    // let tempUser = JSON.parse(ApplicationSettings.getString('user'));
-    // this.user = tempUser;
-    // 
+     
   }
 
 

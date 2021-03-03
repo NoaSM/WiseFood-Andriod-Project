@@ -5,7 +5,7 @@ import { Users } from 'src/app/services/users.service';
 import { ApplicationSettings, ItemEventData } from '@nativescript/core';
 import { firestore } from "@nativescript/firebase";
 import { Router,NavigationEnd } from '@angular/router';
-//import { CheckedIngredients } from '../groceries/groceries.component'
+
 
 
 @Component({
@@ -17,7 +17,7 @@ export class RecipesComponent implements OnInit {
   
   public ingredientsChosen;
   public recipeList = [];
-  public numbers = [1,2,3,4,5,6,7,8,9,10]
+  
   public user: Users;
   public ind1;
   
@@ -36,13 +36,13 @@ export class RecipesComponent implements OnInit {
   private async loadRecipes(){
     let rList = [];
     let items = this.ingredientsChosen.map(item=>item.Name)//searching for the checked ingredients by name
-    //console.log(items)
+    
     await firestore.collection("Recipes").where("IngredientsArray", "array-contains-any", items)
     .get()//checks if ingredients inside the recipe collection contains any of the checked ingredients and gets the relevent recipes
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
              let r = doc.data() //is never undefined for query doc snapshots
-          //console.log(doc.data());
+          
           rList.push(r)
         });
     })
@@ -51,7 +51,7 @@ export class RecipesComponent implements OnInit {
     });
     
     this.recipeList = [...rList];//מפשט לאוביקט push the relevent recipes into a new array - recipelist
-    // console.log('recipeList => ',this.recipeList[0].Name)
+    
   }
   something(args: ItemEventData){ //item comes from recipes html ngfor which contains the fields of the recipe collection
     let item = this.recipeList[args.index];
@@ -64,7 +64,7 @@ export class RecipesComponent implements OnInit {
             existsBothArray.push(ingredient1)
             this.ind1 = missingIngredients.indexOf(ingredient1, 0);
             missingIngredients.splice(this.ind1, 1);
-            // console.log("The ingredient exsists in both lists:", ingredient1)
+            
             
           }
       })
@@ -72,8 +72,7 @@ export class RecipesComponent implements OnInit {
     ApplicationSettings.setString("existsBoth", JSON.stringify(existsBothArray))//selected ingredients + ingredients in recipe
     ApplicationSettings.setString("item", JSON.stringify(item))//fields inside recipe collection from firebase
     ApplicationSettings.setString("missing", JSON.stringify(missingIngredients))
-    // console.log("The ingredients list:", item.IngredientsArray);
-    // console.log("the user ingredients are:", this.user.SelectedIngredients)
+    
     this.router.navigate(["/recipedetail"])
   }
 
