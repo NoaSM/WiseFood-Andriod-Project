@@ -42,11 +42,12 @@ export class GroceriesComponent implements OnInit {
         if (e instanceof NavigationEnd) {
             
             this.user = JSON.parse(ApplicationSettings.getString('user'));
-            this.SelectedIngredients = this.user.SelectedIngredients
-              
-        
-            this.refreshDate();
-        }
+            if (this.user.SelectedIngredients) {
+              this.SelectedIngredients = this.user.SelectedIngredients
+                
+          
+              this.refreshDate();
+        }}
      });
  }
   
