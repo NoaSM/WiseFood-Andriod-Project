@@ -33,9 +33,4 @@ export class RecipedetailComponent implements OnInit {
     })
     this.groceries.saveShoppingList(this.missing)//הפונקציה פועלת בשרת
   }
-  goBack(){
-    this.routerExtensions.backToPreviousPage();
-
-  }
-
 }

@@ -50,13 +50,6 @@ export class GroceriesComponent implements OnInit {
         }}
      });
  }
-  
-  
-
-
-
-
-
   ngOnInit(): void {
     this.pageLoad();
 
@@ -72,12 +65,8 @@ export class GroceriesComponent implements OnInit {
       
 
       this.refreshDate();//פונקציה שעוזרת לתאריך להתדעכן באופן יומיומי
-     
-
     }
   }
-
-
   private async loadIngredients() { //פונקציה שמביאה את המצרכים מהשרת
     this.DataCollection = await this.groceries.getList(); //טוען את הרשימה ממסד הנתונים שיושב ב service
     this.DataCollection.forEach(item => {
@@ -228,7 +217,7 @@ export class GroceriesComponent implements OnInit {
         
         ind = i;
         
-        await this.groceries.saveSelectedIngredients(item, ind)//
+        await this.groceries.saveSelectedIngredients(item, ind)//מעדכן בפיירבייס בשרת
         
       }
 
