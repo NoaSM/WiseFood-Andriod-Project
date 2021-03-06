@@ -13,12 +13,12 @@ export class GroceriesService {
 
   }
 
-  public async getList() {
+  public async getList() {//מביא את הרשימת מוצרים מתוך הפיירבייס
     let Ingredients = await firestore.collection('Ingredients').get();
     return Ingredients;
   }
 
-  public async saveSelectedIngredients(item, ind) {//לוקח לפונקציה מוצר 
+  public async saveSelectedIngredients(item, ind) {//פונקציה הפועלת כדי לשמור לכל משתמש את הרשימה שלו בכל שינוי שהמשתמש עושה
     let user = JSON.parse(await ApplicationSettings.getString('user'));//לוקח את המשתמש השמור ב-אפ סטינגז ומכניס לתוך משתנה
     if (ind > -1) { // רק אם האינדקס של האייטם נמצא ברשימהה, כלומר הוא גדול ממינוס 1, תבצע את כל מה שלמטה
     
@@ -51,7 +51,7 @@ export class GroceriesService {
   }
 
 
-  public async deleteSelectedIngredients(item) {
+  public async deleteSelectedIngredients(item) {//מחיקה של מוצרים מהפיירבייס
     let user = JSON.parse(await ApplicationSettings.getString('user'));
 
     for (let i = 0; i < user.SelectedIngredients.length; i++) {

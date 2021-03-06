@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
   }
   
 
-  userAdding() {
+  userAdding() {//פונקציה של הוספת משתמש חדש הפועלת מתוך השרת
     console.log(this.user)
     this.users.addUser(this.user)
     

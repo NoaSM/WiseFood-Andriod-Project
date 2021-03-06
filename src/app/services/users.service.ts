@@ -26,7 +26,7 @@ export class UsersService {
   constructor(private router: Router, private zone: NgZone) { }
 
 
-  public async addUser(user: Users) {
+  public async addUser(user: Users) {//פונקציה שנותנת להכין משתמש חדש
 
 
     auth().createUserWithEmailAndPassword(user.Email, user.Password)
@@ -44,7 +44,7 @@ export class UsersService {
 
   }
 
-  public async loginUser(user: Users) {
+  public async loginUser(user: Users) {//מכניסה את השמתמש לאפליקציה עם שם וססמא
     auth().signInWithEmailAndPassword(user.Email, user.Password)
       .then(async (data) => {
         let UserDoc = await (await firestore.collection('Users').doc(data.user.uid).get()).data();

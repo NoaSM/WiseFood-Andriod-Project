@@ -25,15 +25,13 @@ export class RecipedetailComponent implements OnInit {
     this.missing = JSON.parse(ApplicationSettings.getString('missing'));
 
   }
-  addToShoppinglist(){
+  addToShoppinglist(){//פונקציה שמוסיפה את המצרכים החסרים לשמתמש לרשימת קניות שלו
     Dialogs.alert({
       title: "Items been added to your shopping list!",
       message: "",
       okButtonText: "Ok"
     })
-    console.log("hi")
-    this.groceries.saveShoppingList(this.missing)
-    console.log("hi2")
+    this.groceries.saveShoppingList(this.missing)//הפונקציה פועלת בשרת
   }
   goBack(){
     this.routerExtensions.backToPreviousPage();

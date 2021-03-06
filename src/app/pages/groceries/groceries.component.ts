@@ -67,7 +67,7 @@ export class GroceriesComponent implements OnInit {
     this.loadIngredients();
     
     this.user = JSON.parse(ApplicationSettings.getString('user'));//לוקח את הלוקר סטורג' של המשתמש מתוך הסרביס של המשתמש
-    if (this.user.SelectedIngredients) {
+    if (this.user.SelectedIngredients) { //אם קיים רשימה של מצרכים למשתמש
       this.SelectedIngredients = this.user.SelectedIngredients//מקשר ואומר שכל מה שבסלקטד יהיה קשור לסלקטד של המשתמש
       
 
@@ -78,20 +78,20 @@ export class GroceriesComponent implements OnInit {
   }
 
 
-  private async loadIngredients() {
+  private async loadIngredients() { //פונקציה שמביאה את המצרכים מהשרת
     this.DataCollection = await this.groceries.getList(); //טוען את הרשימה ממסד הנתונים שיושב ב service
     this.DataCollection.forEach(item => {
       item.isChecked = false;//קובע שהמצב הראשוני לכל מוצר יהיה FALSE
     });
   }
 
-  private filterIngredients(text) {
+  private filterIngredients(text) { //פונקציה שפועלת לסינון בכתיבה של המצרכים בתיבת חיפוש
     this.Ingredients = [];
     try {
       this.DataCollection.forEach(item => {
 
         if (item.data().Name.toLowerCase().indexOf(text.toLocaleLowerCase()) != -1 && !this.SelectedIngredients.filter(items => items.Name === item.data()["Name"])[0]) //אם שם הפריט מכיל את מה שכתוב בתיבת החיפוש
-          this.Ingredients.push(item.data()) //תוסיף את הפריט לרשימה המוצגת
+          this.Ingredients.push(item.data()) 
       });
     } catch (error) {
       console.log(error)
@@ -110,7 +110,7 @@ export class GroceriesComponent implements OnInit {
       this.Ingredients = [];
   }
 
-  onClear(args) {
+  onClear(args) {//מנקה את התיבת חיפוש כאשר נוסף מוצר לרשימה
     this.Ingredients = []; 
   }
 
@@ -122,15 +122,15 @@ export class GroceriesComponent implements OnInit {
     this.SelectedIngredients.push(item)//כל מוצר שנלחץ מתוך החיפוש , נכנס לתוך הרשימת מוצרים של המשתמש
     this.groceries.saveSelectedIngredients(item, this.ind)//פונקציה מתוך הסרביס כדי לשמור את המוצרים לכל משתמש בפיירבייס ובלוקל סטורג
     this.searchBar.text = '';
-    this.onClear(args);
+    this.onClear(args);//מפעילה את הפונקציה שמנקה את תיבת החיפוש
 
   }
 
-  selectedTap(args: ItemEventData) {//פונקציה הוקראת בלחיצה על כל מוצר ברשימה השמורה של המשתמש בדף הבית
+  selectedTap(args: ItemEventData) {//פונקציה הוקרת בלחיצה על כל מוצר ברשימה השמורה של המשתמש בדף הבית
 
     this.ind = args.index // האינדקס של איפה שלחצנו באפליקציה
     let item = this.SelectedIngredients[this.ind]//המוצר הנלחץ לפי האינדקס שלו
-    item.isChecked = !item.isChecked//בלחיצה על מוצר- המוצר מקבל טרו- משתנה בוליאני
+    item.isChecked = !item.isChecked//בלחיצה על מוצר- המוצר מקבל טרו- משתנה בוליאני וההפך
     this.groceries.saveSelectedIngredients(item, this.ind)// פונקציה לסרביס כדי לעדכן את הפיירבייס ולוקל סטורג
     this.ind = -1 // לאפס את האינדקס
   }
@@ -188,24 +188,14 @@ export class GroceriesComponent implements OnInit {
           item.timeLeft = Math.ceil((Math.abs(time)) / (1000*60*60*24 ))
           item.exDate = d.text;
         }
-        
         ind = i;
-        console.log("1", this.SelectedIngredients[i])
-        console.log("2",item)
         this.SelectedIngredients[i] = item;
-        console.log("3",this.SelectedIngredients[i])
-        
         break;
 
       }
-
     }
-    
-    
     this.groceries.saveSelectedIngredients(item, ind)
     this.refreshDate();
-    
-    
   }
 
 
@@ -246,24 +236,24 @@ export class GroceriesComponent implements OnInit {
 
   }
 
-  showDate(item){
+  showDate(item){ //שלושה מצבים בקופסאת דיאלוג לפי התאריך. 
     this.refreshDate();
     if(item.exDate != "Expired!" && item.exDate != ""){
-      Dialogs.alert({
+      Dialogs.alert({//אם התאריך עוד לא עבר את התוקף שלו
         title: item.Name,
         message: item.exDate + " " + item.timeLeft + " Day(s) Left",
         okButtonText: "Ok"
       })
     }
     else if(item.exDate == ""){
-      Dialogs.alert({
+      Dialogs.alert({//מצב ראשוני - אם המשתמש לא הקליד עדיין תאריך
         title: item.Name,
         message: "Please Add Expiration Date",
         okButtonText: "Ok"
       })
     }
     else{
-      Dialogs.alert({
+      Dialogs.alert({//המצב שבו התאריך פג תוקף כאשר זמן קטן מאפס
         title: item.Name,
         message: item.exDate,
         okButtonText: "Ok"

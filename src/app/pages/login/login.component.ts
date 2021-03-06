@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async Login() {
+  async Login() {//פונקציה של כניסת משתמש הפועלת מתוך השרת
     console.log(this.user)
     await this.usersService.loginUser(this.user)
      

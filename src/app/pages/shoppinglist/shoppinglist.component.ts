@@ -28,7 +28,7 @@ export class ShoppinglistComponent implements OnInit {
       }
 
 
-  async removeShopList(item) {
+  async removeShopList(item) {//מוחק מוצר מהרשימת קניות
     for (let i = 0; i < this.ShoppingList.length; i++) {
       if (this.ShoppingList[i].ID === item.ID) {
     
@@ -40,7 +40,7 @@ export class ShoppinglistComponent implements OnInit {
       
 
 
-  onSelectedTap(args: ItemEventData) {
+  onSelectedTap(args: ItemEventData) {//מסמן מוצר ברשימת קניות
 
     this.ind = args.index // האינדקס של איפה שלחצנו באפליקציה
     let item = this.ShoppingList[this.ind]
@@ -49,7 +49,7 @@ export class ShoppinglistComponent implements OnInit {
     this.ind = -1 // לאפס את האינדקס
   }
 
-  fromShoppingListToPantry(item){
+  fromShoppingListToPantry(item){//מעביר מוצר מהרשימת קניות לרשימה הראשית
     Dialogs.alert({
       title: "The Item Has Moved To Your Pantry List",
       message: "",
