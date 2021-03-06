@@ -53,7 +53,7 @@ export class RecipesComponent implements OnInit {
     this.recipeList = [...rList];//מפשט לאוביקט push the relevent recipes into a new array - recipelist
     
   }
-  something(args: ItemEventData){ //פונקציה שמביאה רשימה של המצרכים במתכון הקיימים למשתמש ברשימה שלו ורשימה של מצרכים במתכון שחסר לו
+  creatingRecipesLists(args: ItemEventData){ //פונקציה שמביאה רשימה של המצרכים במתכון הקיימים למשתמש ברשימה שלו ורשימה של מצרכים במתכון שחסר לו
     let item = this.recipeList[args.index];
     let existsBothArray = [];//רשימה שתכיל את אותם מוצרים הקיימים במתכון וברשימה הראשית של השמתמש
     let missingIngredients=Object.assign([], item.IngredientsArray);
@@ -62,8 +62,8 @@ export class RecipesComponent implements OnInit {
       this.user.SelectedIngredients.forEach(ingredient2 => {//לכל מוצר ברשימת מוצרים של המשתמש
           if (ingredient1 == ingredient2["Name"]){//אם יש להם את אותו השם
             existsBothArray.push(ingredient1)//להכניס את המוצר הזה לרשימה existbotharray
-            this.ind1 = missingIngredients.indexOf(ingredient1, 0);
-            missingIngredients.splice(this.ind1, 1);
+            this.ind1 = missingIngredients.indexOf(ingredient1, 0);//פונקציה שמחפשת לפי אינדקס את המוצרים שקיימים בשני הרשימות (מתכונים ומשתמש)
+            missingIngredients.splice(this.ind1, 1);//מסירה את המוצרים הקיימים בשני הרשימות כך שיישאר המוצרים שחסרים למשתמש
             
             
           }

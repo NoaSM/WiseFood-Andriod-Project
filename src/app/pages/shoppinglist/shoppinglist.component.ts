@@ -30,12 +30,12 @@ export class ShoppinglistComponent implements OnInit {
 
   async removeShopList(item) {//מוחק מוצר מהרשימת קניות
     for (let i = 0; i < this.ShoppingList.length; i++) {
-      if (this.ShoppingList[i].ID === item.ID) {
+      if (this.ShoppingList[i].ID === item.ID) {//רץ על אורך הרשימה ומוצא את המוצר הנבחר למחיקה לפי ID
     
-        this.ShoppingList.splice(i, 1);
+        this.ShoppingList.splice(i, 1);//מחיקת מוצר מהמסך
         break;
       }}
-      await this.groceries.deleteShoppingList(item)
+      await this.groceries.deleteShoppingList(item)//מפעיל פונקיית מחיקה בשרת ומעדכן את הפיירבייס
     }
       
 

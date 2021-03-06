@@ -175,46 +175,46 @@ export class GroceriesComponent implements OnInit {
     for (let i = 0; i < this.SelectedIngredients.length; i++) {
       if (this.SelectedIngredients[i].ID === item.ID)//עובר על המוצרים ועובד על המוצר הנבחר לפי ה ID
        {
-        let dd = new Date(d.text).getTime()
+        let dd = new Date(d.text).getTime()//התאריך שהמתשמש בחר
         console.log("dd => ",dd)
         console.log('new Date(d.text) --> ',new Date(d.text))
-        let start=Date.now()
+        let start=Date.now()//התאריך של היום
         let time = dd - start
-        if(time < 0){
+        if(time < 0){//אם התאריך שהמשתמש בחר קטן מהתאריך של היום - המוצר פג תוקף
           item.exDate = "Expired!"
           item.timeLeft="0"
         }
         else{
-          item.timeLeft = Math.ceil((Math.abs(time)) / (1000*60*60*24 ))
+          item.timeLeft = Math.ceil((Math.abs(time)) / (1000*60*60*24 ))//אם המוצר אינו פג תוקף(גדול מ-0) - חישוב הימים עד התאריך שהוא יהיה פג תוקף
           item.exDate = d.text;
         }
         ind = i;
-        this.SelectedIngredients[i] = item;
+        this.SelectedIngredients[i] = item;//מעדכן את הרשימה הראשית עם התאריך החדש של המוצר שהמשתמש בחר
         break;
 
       }
     }
-    this.groceries.saveSelectedIngredients(item, ind)
+    this.groceries.saveSelectedIngredients(item, ind)//מעדכן בפיירבייס בשרת
     this.refreshDate();
   }
 
 
 
-  async refreshDate(){
+  async refreshDate(){//פונקציה שעוזרת לתאריך להתעדכן 
    
-    if (this.SelectedIngredients === []){
+    if (this.SelectedIngredients === []){// אם הרשימה הראשית ריקה שלא יעשה כלום כי אין תאריכים 
       return;
     }
     let ind;
     
-    for (let i = 0; i < this.SelectedIngredients.length; i++) {
-      let item = Object.assign({}, this.SelectedIngredients[i])
+    for (let i = 0; i < this.SelectedIngredients.length; i++) {//עובר אחד אחד על הרשימה הראשית
+      let item = Object.assign({}, this.SelectedIngredients[i])//עושה המרה של איבר כלשהו ברשימה הראשית למילון ושם אותו בתוך משתנה אייטם
 
-      if (item.exDate != "") // צריך לערוך את זה לפי מה שמוגדר הערך הראשון של התאריך
+      if (item.exDate != "") // אם יש תאריך למוצר
        {
-        let dd = new Date(item.exDate).getTime()
+        let dd = new Date(item.exDate).getTime()//התאריך שהמשתמש בחר
         
-        let start=Date.now()
+        let start=Date.now()//התאריך של היום
         let time = dd - start
         if(time < 0){
           item.exDate = "Expired!"
@@ -228,7 +228,7 @@ export class GroceriesComponent implements OnInit {
         
         ind = i;
         
-        await this.groceries.saveSelectedIngredients(item, ind)
+        await this.groceries.saveSelectedIngredients(item, ind)//
         
       }
 

@@ -16,7 +16,7 @@
                 
             </StackLayout>
             <StackLayout class="listofrecipes">
-                <ListView height="400" [items]="recipeList" (itemTap)="something($event)" style="background-color: rgba(255, 255, 255, 0.726)" >
+                <ListView height="400" [items]="recipeList" (itemTap)="creatingRecipesLists($event)" style="background-color: rgba(255, 255, 255, 0.726)" >
                     <ng-template let-item="item" let-i="index">
                         <GridLayout>
                             <Label [text]="item.Name" class="list-group-item" style="color:rgb(0, 0, 0)" style="font-size: 20%;" ></Label>
